@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     $("#save").on("click", function(){
         payload={
@@ -7,7 +6,7 @@ $(document).ready(function() {
             priority:$("#priority").val(), 
             tipo:$("#tipo").val()       
         }
-        method = "customer_support.use_case.tickets.save.handler"
+        method = "support_portal.use_case.tickets.save.handler"
         callback = (data) => {window.location.href = "/tickets";}
         send_petition(payload, method, callback)
     })
