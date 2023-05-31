@@ -15,6 +15,11 @@ def handler(id,priority, tipo, producto):
 
     print(doc)
     
+    frappe.clear_cache()
+
+    frappe.website.render.clear_cache()
+
+
     return{
        "status":200
        # "data":{

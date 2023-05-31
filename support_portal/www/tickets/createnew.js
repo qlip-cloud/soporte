@@ -9,7 +9,7 @@ $(document).ready(function() {
         }
         method = "support_portal.use_case.tickets.save.handler"
         callback = (data) => {
-            console.log(data) 
+            
             window.location.href = "/tickets";
         }
 
@@ -18,6 +18,8 @@ $(document).ready(function() {
 })
 
 async function send_petition(payload, method, callresponse = null){
+    $('#blockscreen-modal').modal("show")
+
      return new Promise(() => {
          frappe.call({
          method: method,

@@ -9,27 +9,35 @@
             <span class="indicator-pill whitespace-nowrap red">
                 <span>Abrir/Abierto</span>
             </span>   
-            
 
         </div>           
     </div>
-    
+    <div class="flex col page-actions justify-content-end">
+    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets">Atras</a>
+    </div>
     
 
     
-    <table>
-        <tr><td>Asunto</td><td>Producto</td><td>Prioridad</td><td>Tipo</td></tr>
+    <table style="margin-top: 20px;" class="table">
+        <tr>
+            <td>Asunto</td>
+            <td>Producto</td>
+            <td>Prioridad</td>
+            <td>Tipo</td>
+        </tr>
         <tbody>
             <tr>
                 <td>
+
                     <input type="text" autocomplete="off" class="input-with-feedback form-control floating-input bold" maxlength="140" data-fieldtype="Data" data-doctype="Issue" id="subject">
-                </td>
+                    </td>
                 <td>
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
-                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value="qlip">
-                                <option value="qlip">qlip</option>
-                                <option value="GP">GP</option>
+                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue"  >
+                                {% for product in products%}
+                                    <option value="{{product.name}}">{{product.name}}</option>
+                                {% endfor %}
                             </select>
                             <div class="select-icon ">
                                 <svg class="icon icon-sm">
@@ -43,11 +51,15 @@
                 <td>
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
-                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value="Bajo">
-                                <option value="Bajo">Bajo</option>
+                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue"  >
+                                {% for priority in priorities%}
+                                    <option value="{{priority.name}}">{{priority.name}}</option>
+                                {% endfor %}
+
+                                <!--option value="Bajo">Bajo</option>
                                 <option value="Medio">Medio</option>
                                 <option value="Alto">Alto</option>
-                                <option value="Critica">Critica</option>
+                                <option value="Critica">Critica</option-->
                             </select>
                             <div class="select-icon ">
                                 <svg class="icon icon-sm">
@@ -61,10 +73,14 @@
                 <td>
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
-                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="tipo" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value="Solicitud">
-                                <option value="Solicitud">Solicitud</option>
+                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="tipo" data-doctype="Issue" >
+                                {% for type in types%}
+                                    <option value="{{type.name}}">{{type.name}}</option>
+                                {% endfor %}
+
+                                <!--option value="Solicitud">Solicitud</option>
                                 <option value="Pregunta">Pregunta</option>
-                                <option value="Problema">Problema</option>
+                                <option value="Problema">Problema</option-->
                             </select>
                             <div class="select-icon ">
                                 <svg class="icon icon-sm">
@@ -76,18 +92,24 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td colspan="4"> 
+                    description
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"> 
+                    <textarea  autocomplete="off" class="input-with-feedback form-control floating-input bold" maxlength="140" data-fieldtype="Data" data-doctype="Issue" id="description"></textarea>
+
+                </td>
+            </tr>
             
         </tbody>
     </table>
 
     <hr class="rounded">
 
-    <td>
-        <input type="text" autocomplete="off" class="input-with-feedback form-control floating-input bold" maxlength="140" data-fieldtype="Data" data-doctype="Issue" id="description">
-    </td>
-    <hr class="rounded">
-
-    <div class="comment-input-wrapper">
+    <!--div class="comment-input-wrapper">
         <div class="comment-input-header">
             <span>Añadir un comentario</span>
         </div>
@@ -97,9 +119,10 @@
 
         
     </div>
-    <hr class="rounded">
+    <hr class="rounded"-->
 
 <button class="btn btn-primary btn-sm primary-action" id="save">Save</button>
+<div class="modal" id="blockscreen-modal" data-backdrop="static" data-keyboard="false" tabindex="-1">
 
     {% endblock %}
 </div>

@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $("#upload").on("click", function(){
 
         id_control = $(this).data('id')
@@ -23,6 +22,8 @@ $(document).ready(function() {
             formData.append("fieldname", "image");
     
             callback = (data)=>{
+
+                location.reload() 
     
                 $(".modal").modal("hide")
             //    $(".picture-loading").html("")            
@@ -31,7 +32,6 @@ $(document).ready(function() {
             //    $('#imgInp').val("")
             //    $("#image").val(data.file_url)
 
-            console.log(data)
     
             //    payload = {
             //      company_id:id_control,
@@ -74,42 +74,57 @@ $(document).ready(function() {
         send_petition(payload, method, callback)
     })
 
+    $("#btn_comment").on("click", function(){
+        payload={
+            reference_doctype: "Issue",
+            reference_name:$(this).data("id"), 
+            content:$("#comment").val(),
+            comment_email:$(this).data("user"),
+            comment_by:   $(this).data("user") 
+        }
+
+        method = "frappe.desk.form.utils.add_comment"
+
+        callback = (data) => {
+            
+            $("#comment").val("")
+
+            date = new Date(data.creation);
+            content = `
+                <div style="margin-top: 20px">
+                    ${data.comment_email} ${new Intl.DateTimeFormat('es-CO', { dateStyle: 'short', timeStyle: 'short' }).format(date)}:
+                    <p>${data.content}</p>
+                </div>
+            `
+
+            $("#comment_area").prepend(content)
+            $('#blockscreen-modal').modal("hide")
+
+        }
+
+        send_petition(payload, method, callback)
+    })
 
 })
 
 
-function send_petition_upload(module_root, method, formData, callback, url = null, raise_exception = true){
+function send_petition_upload(module_root, method, formData, callback, url = null){
 
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = () => {
             if (xhr.readyState == XMLHttpRequest.DONE) {
+            $('#blockscreen-modal').modal("hide")
 
                 response = JSON.parse(xhr.responseText)
+                
+                callback(response.message)
 
-                if (xhr.status === 200) {
-
-                   
-                    callback(response.message)
-
-                } else {
-                   
-                    callback(response.message)
-                   
-                    if (raise_exception){
-                   
-                        frappe.msgprint(__(`Error: ${response.message.msg}`));
-                    }
-
-                }
             }
         }
 
-        endpoint = url ? url : setup_method(API_ROOT, module_root, method, true)
-
-        console.log(endpoint)
-       
+        endpoint = url ? url : setup_method(API_ROOT, module_root, method, true)      
         xhr.open('POST',endpoint , true);
         xhr.setRequestHeader('Accept', 'application/json');
         xhr.setRequestHeader('X-Frappe-CSRF-Token', frappe.csrf_token);
@@ -119,25 +134,22 @@ function send_petition_upload(module_root, method, formData, callback, url = nul
 }
 
 async function send_petition(payload, method, callresponse = null){
+    $('#blockscreen-modal').modal("show")
+
     return new Promise(() => {
         frappe.call({
         method: method,
         args: payload,
         async: false,
         callback: function (result) {
-                    response = result.message
-                            if (response.status == 200) {
-                                           if (callresponse) {
-                                               callresponse(response)
-                                           }
-                                       }
-                                       if (response.status == 400) {
-                                           if (callresponse) {
-                                               callresponse(response.data)
-                                           }
-                                           frappe.msgprint(__(`error: ${response.msg}`))
-                                       }
-                                   }    
+            response = result.message
+
+            callresponse(response)
+                if (response.status && response.status == 400) {
+                        
+                    frappe.msgprint(__(`error: ${response.msg}`))
+                }
+            }    
         })
     })
 }
