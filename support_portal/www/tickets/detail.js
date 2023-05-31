@@ -22,6 +22,8 @@ $(document).ready(function() {
             formData.append("fieldname", "image");
     
             callback = (data)=>{
+
+                location.reload() 
     
                 $(".modal").modal("hide")
             //    $(".picture-loading").html("")            
