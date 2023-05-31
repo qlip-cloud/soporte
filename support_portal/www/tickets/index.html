@@ -14,11 +14,11 @@
     </div>
     
     <table class="table">
-        <tr><td>Codigo</td><td>Asunto</td><td>Estado</td><td>Fecha</td></tr>
+        <tr><td>Codigo</td><td>Asunto</td><td>Estado</td><td>Prioridad</td><td>Fecha</td></tr>
         <tbody>
             {% for issue in issues %}
             <tr>
-                <td><a href="/tickets/detail?code={{issue.name}}">{{issue.name}}</a></td><td>{{issue.subject}}</td><td>{{issue.status}}</td><td>{{issue.creation}}</td>
+                <td><a href="/tickets/detail?code={{issue.name}}">{{issue.name}}</a></td><td>{{issue.subject}}</td><td>{{issue.status}}</td><td>{{issue.priority}}</td><td>{{issue.creation}}</td>
             </tr>
             {% endfor %}
         </tbody>
