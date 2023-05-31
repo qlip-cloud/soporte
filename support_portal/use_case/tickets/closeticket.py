@@ -1,16 +1,12 @@
 import frappe 
 
 @frappe.whitelist()
-def handler(subject, producto ,priority, tipo, description):
+def handler(id):
 
 
-    doc = frappe.new_doc('Issue')
-    doc.subject = subject
-    doc.priority = priority
-    doc.tipo = tipo
-    doc.producto = producto
-    doc.description = description
-    doc.insert()
+    doc = frappe.get_doc('Issue', id)
+    doc.status = "Closed"
+    doc.save()
 
     frappe.db.commit()
 

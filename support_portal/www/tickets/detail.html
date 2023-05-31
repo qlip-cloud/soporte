@@ -10,11 +10,11 @@
             <div class="flex col page-actions justify-content-end">
                 <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
             </div>      
-            <button data-label="Cerrar" class="btn btn-default ellipsis">
+            <button data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
                 Cerrar ticket
             </button> 
             <div>|        |</div>
-            <button class="btn btn-primary btn-sm primary-action" id="save">
+            <button class="btn btn-primary btn-sm primary-action" id="save" data-id="{{issue.name}}">
                 Guardar cambios
             </button>
         </div>             
@@ -30,7 +30,7 @@
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value={{issue.priority}}>
-                                <option value="Bajo">{{issue.priority}}</option>
+                                <option value={{issue.priority}}>{{issue.priority}}</option>
                                 <option value="Bajo">Bajo</option>
                                 <option value="Medio">Medio</option>
                                 <option value="Alto">Alto</option>
@@ -49,7 +49,7 @@
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="tipo" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value={{issue.tipo}}>
-                                <option value="Bajo">{{issue.tipo}}</option>
+                                <option value={{issue.tipo}}>{{issue.tipo}}</option>
                                 <option value="Solicitud">Solicitud</option>
                                 <option value="Pregunta">Pregunta</option>
                                 <option value="Problema">Problema</option>
@@ -67,7 +67,7 @@
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value={{issue.producto}}>
-                                <option value="qlip">{{issue.producto}}</option>
+                                <option value={{issue.producto}}>{{issue.producto}}</option>
                                 <option value="qlip">qlip</option>
                             </select>
                             <div class="select-icon ">
@@ -83,7 +83,14 @@
         </tbody>
     </table>
     
-    
+    <hr class="rounded">
+    <div class="comment-input-header">
+        <span>Descripcion</span>
+    </div>
+    <div>
+        {{issue.description}}
+    </div>
+
     <hr class="rounded">
 
     <div>
