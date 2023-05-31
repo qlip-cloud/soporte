@@ -30,7 +30,6 @@ $(document).ready(function() {
             //    $('#imgInp').val("")
             //    $("#image").val(data.file_url)
 
-            console.log(data)
     
             //    payload = {
             //      company_id:id_control,
@@ -107,7 +106,7 @@ $(document).ready(function() {
 })
 
 
-function send_petition_upload(module_root, method, formData, callback, url = null, raise_exception = true){
+function send_petition_upload(module_root, method, formData, callback, url = null){
 
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
@@ -117,13 +116,9 @@ function send_petition_upload(module_root, method, formData, callback, url = nul
             $('#blockscreen-modal').modal("hide")
 
                 response = JSON.parse(xhr.responseText)
+                
                 callback(response.message)
-                if (raise_exception){
-                
-                    frappe.msgprint(__(`Error: ${response.message.msg}`));
-                }
 
-                
             }
         }
 
