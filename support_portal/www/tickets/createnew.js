@@ -4,10 +4,15 @@ $(document).ready(function() {
             subject:$("#subject").val(),
             producto:$("#producto").val(), 
             priority:$("#priority").val(), 
-            tipo:$("#tipo").val()       
+            tipo:$("#tipo").val(),
+            description:$("#description").val()        
         }
         method = "support_portal.use_case.tickets.save.handler"
-        callback = (data) => {window.location.href = "/tickets";}
+        callback = (data) => {
+            console.log(data) 
+            window.location.href = "/tickets";
+        }
+
         send_petition(payload, method, callback)
     })
 })
@@ -20,17 +25,20 @@ async function send_petition(payload, method, callresponse = null){
          async: false,
          callback: function (result) {
                      response = result.message
-                             if (response.status == 200) {
-                                            if (callresponse) {
-                                                callresponse(response)
-                                            }
-                                        }
-                                        if (response.status == 400) {
-                                            if (callresponse) {
-                                                callresponse(response.data)
-                                            }
-                                            frappe.msgprint(__(`error: ${response.msg}`))
-                                        }
+                     if (callresponse) {
+                        callresponse(response)
+                    }
+                            // if (response.status == 200) {
+                            //                if (callresponse) {
+                            //                    callresponse(response)
+                            //                }
+                            //            }
+                            //            if (response.status == 400) {
+                            //                if (callresponse) {
+                            //                    callresponse(response.data)
+                            //                }
+                            //                frappe.msgprint(__(`error: ${response.msg}`))
+                            //            }
                                     }    
          })
      })

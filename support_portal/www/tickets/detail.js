@@ -50,13 +50,27 @@ $(document).ready(function() {
 
     $("#save").on("click", function(){
         payload={
-            subject:$("#subject").val(),
-            producto:$("#producto").val(), 
+            id:$(this).data("id"),
             priority:$("#priority").val(), 
-            tipo:$("#tipo").val()       
+            tipo:$("#tipo").val(),
+            producto:$("#producto").val()      
         }
-        method = "support_portal.use_case.tickets.save.handler"
-        callback = (data) => {window.location.href = "/tickets";}
+        method = "support_portal.use_case.tickets.update.handler"
+        callback = (data) => {
+            window.location.href = "/tickets";
+        }
+        send_petition(payload, method, callback)
+    })
+
+    $("#close").on("click", function(){
+        payload={
+            id:$(this).data("id")      
+     
+        }
+        method = "support_portal.use_case.tickets.closeticket.handler"
+        callback = (data) => {
+            window.location.href = "/tickets";
+        }
         send_petition(payload, method, callback)
     })
 
