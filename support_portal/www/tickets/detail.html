@@ -9,16 +9,21 @@
             </span>
             <div class="flex col page-actions justify-content-end">
                 <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
-            </div>      
-            <button data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
-                Cerrar ticket
-            </button> 
-            <div>|        |</div>
-            <button class="btn btn-primary btn-sm primary-action" id="save" data-id="{{issue.name}}">
-                Guardar cambios
-            </button>
+               
+                <button data-label="Atras" class="btn btn-default ellipsis">
+                    <a href="/tickets">Atras</a>
+                </button> 
+                <div>|        |</div> 
+                <button data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
+                    Cerrar ticket
+                </button> 
+                <div>|        |</div>
+                <button class="btn btn-primary btn-sm primary-action" id="save" data-id="{{issue.name}}">
+                    Guardar cambios
+                </button>
+            </div>   
         </div>             
-    </div>
+    </div> 
 
  
 
