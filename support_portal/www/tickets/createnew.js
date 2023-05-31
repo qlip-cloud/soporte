@@ -27,7 +27,6 @@ async function send_petition(payload, method, callresponse = null){
          async: false,
          callback: function (result) {
                      response = result.message
-                    
                      if (callresponse) {
                         callresponse(response)
                     }

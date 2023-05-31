@@ -9,6 +9,7 @@
             </span>
             <div class="flex col page-actions justify-content-end">
                 <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
+<<<<<<< HEAD
             </div>      
             <button style="margin-right: 10px;" data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
                 Cerrar ticket
@@ -28,17 +29,48 @@
             <td>Prioridad</td>
             <td>Tipo</td>
         </tr>
+=======
+               
+                <button data-label="Atras" class="btn btn-default ellipsis">
+                    <a href="/tickets">Atras</a>
+                </button> 
+                <div>|        |</div> 
+                <button data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
+                    Cerrar ticket
+                </button> 
+                <div>|        |</div>
+                <button class="btn btn-primary btn-sm primary-action" id="save" data-id="{{issue.name}}">
+                    Guardar cambios
+                </button>
+            </div>   
+        </div>             
+    </div> 
+
+ 
+
+    <table>
+        <tr><td>Prioridad</td><td>Tipo</td><td>Producto</td></tr>
+>>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
         <tbody>
             <tr>
                 <td>
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
+<<<<<<< HEAD
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" >
                                 {% for product in products%}
                                     <option value="{{product.name}}" {{ '' if issue.producto != product.name else "Selected"}}>{{product.name}}</option>
                                 {% endfor %}
                                 <!--option value={{issue.producto}}>{{issue.producto}}</option>
                                 <option value="qlip">qlip</option-->
+=======
+                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value={{issue.priority}}>
+                                <option value={{issue.priority}}>{{issue.priority}}</option>
+                                <option value="Bajo">Bajo</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Critica">Critica</option>
+>>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
                             </select>
                             <div class="select-icon ">
                                 <svg class="icon icon-sm">
@@ -47,11 +79,16 @@
                             </div>
                         </div>						
                         <p class="help-box small text-muted hidden-xs"></p>					
+<<<<<<< HEAD
                     </div>        
+=======
+                    </div>                
+>>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
                 </td>
                 <td>
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
+<<<<<<< HEAD
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue" >
                                 {% for priority in priorities%}
                                     <option value="{{priority.name}}" {{ '' if issue.priority != priority.name else "Selected"}}>{{priority.name}}</option>
@@ -62,6 +99,13 @@
                                 <option value="Medio">Medio</option>
                                 <option value="Alto">Alto</option>
                                 <option value="Critica">Critica</option-->
+=======
+                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="tipo" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value={{issue.tipo}}>
+                                <option value={{issue.tipo}}>{{issue.tipo}}</option>
+                                <option value="Solicitud">Solicitud</option>
+                                <option value="Pregunta">Pregunta</option>
+                                <option value="Problema">Problema</option>
+>>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
                             </select>
                             <div class="select-icon ">
                                 <svg class="icon icon-sm">
@@ -70,11 +114,16 @@
                             </div>
                         </div>						
                         <p class="help-box small text-muted hidden-xs"></p>					
+<<<<<<< HEAD
                     </div>                
+=======
+                    </div>
+>>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
                 </td>
                 <td>
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
+<<<<<<< HEAD
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="tipo" data-doctype="Issue" >
                                 {% for type in types%}
                                     <option value="{{type.name}}" {{ '' if issue.tipo != type.name else "Selected"}}>{{type.name}}</option>
@@ -84,6 +133,11 @@
                                 <option value="Solicitud">Solicitud</option>
                                 <option value="Pregunta">Pregunta</option>
                                 <option value="Problema">Problema</option-->
+=======
+                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value={{issue.producto}}>
+                                <option value={{issue.producto}}>{{issue.producto}}</option>
+                                <option value="qlip">qlip</option>
+>>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
                             </select>
                             <div class="select-icon ">
                                 <svg class="icon icon-sm">
@@ -92,9 +146,14 @@
                             </div>
                         </div>						
                         <p class="help-box small text-muted hidden-xs"></p>					
+<<<<<<< HEAD
                     </div>
                 </td>
                 
+=======
+                    </div>        
+                </td>
+>>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
             </tr>            
         </tbody>
     </table>

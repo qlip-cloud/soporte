@@ -16,6 +16,11 @@ def handler(subject, producto ,priority, tipo, description):
 
 
     print(doc)
+
+
+    frappe.clear_cache()
+
+    frappe.website.render.clear_cache()
     
     return{
        "status":200
