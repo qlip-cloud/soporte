@@ -9,26 +9,14 @@
             <span class="indicator-pill whitespace-nowrap red">
                 <span>Abrir/Abierto</span>
             </span>   
-<<<<<<< HEAD
 
         </div>           
-=======
-            
-
-        </div>           
-        <div class="flex col page-actions justify-content-end">
-            <button data-label="Atras" class="btn btn-default ellipsis"><a href="/tickets">
-                Atras</a>
-            </button> 
-        </div>
-
->>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
     </div>
+    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets">Atras</a>
     
     
 
     
-<<<<<<< HEAD
     <table style="margin-top: 20px;" class="table">
         <tr>
             <td>Asunto</td>
@@ -49,21 +37,6 @@
                                 {% for product in products%}
                                     <option value="{{product.name}}">{{product.name}}</option>
                                 {% endfor %}
-=======
-    <table>
-        <tr><td>Asunto</td><td>Producto</td><td>Prioridad</td><td>Tipo</td></tr>
-        <tbody>
-            <tr>
-                <td>
-                    <input type="text" autocomplete="off" class="input-with-feedback form-control floating-input bold" maxlength="140" data-fieldtype="Data" data-doctype="Issue" id="subject">
-                </td>
-                <td>
-                    <div class="control-input-wrapper">                        
-                        <div class="control-input floating-label  flex align-center">
-                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value="qlip">
-                                <option value="qlip">qlip</option>
-                                <option value="GP">GP</option>
->>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
                             </select>
                             <div class="select-icon ">
                                 <svg class="icon icon-sm">
@@ -77,7 +50,6 @@
                 <td>
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
-<<<<<<< HEAD
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue"  >
                                 {% for priority in priorities%}
                                     <option value="{{priority.name}}">{{priority.name}}</option>
@@ -87,13 +59,6 @@
                                 <option value="Medio">Medio</option>
                                 <option value="Alto">Alto</option>
                                 <option value="Critica">Critica</option-->
-=======
-                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue" onclick="this.setAttribute('value', this.value);" value="Bajo">
-                                <option value="Bajo">Bajo</option>
-                                <option value="Medio">Medio</option>
-                                <option value="Alto">Alto</option>
-                                <option value="Critica">Critica</option>
->>>>>>> cf54ea63659431bcfbaec42cdedfac25351f520d
                             </select>
                             <div class="select-icon ">
                                 <svg class="icon icon-sm">
