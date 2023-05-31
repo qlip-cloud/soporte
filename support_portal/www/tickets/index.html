@@ -1,0 +1,42 @@
+{% extends "frappe/templates/web.html" %}
+
+<div>
+     {% block page_content %}
+    
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Mis tickets</h1>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="flex col page-actions justify-content-end">
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew">+ New</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+        
+                <table class="table" style="margin-top: 20px;">
+                    <tr><td>Codigo</td><td>Asunto</td><td>Estado</td><td>Prioridad</td><td>Fecha</td></tr>
+                    <tbody>
+                        {% for issue in issues %}
+                        <tr>
+                            <td><a href="/tickets/detail?code={{issue.name}}">{{issue.name}}</a></td><td>{{issue.subject}}</td><td>{{issue.status}}</td><td>{{issue.priority}}</td><td>{{issue.creation}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        
+            </div>
+        </div>
+    
+
+
+    
+     {% endblock %}
+</div>
