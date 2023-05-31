@@ -2,7 +2,11 @@ import frappe
 
 def get_context(context):
     
-    context.issues = frappe.db.get_list("Issue", fields = ["*"])
+    #context.issues = frappe.db.get_list("Issue", fields = ["*"])
+
+    context.products = frappe.db.get_list("Support product", fields = ["*"])
+    context.types = frappe.db.get_list("Support type", fields = ["*"])
+    context.priorities = frappe.db.get_list("Issue Priority", fields = ["*"])
     
 
 @frappe.whitelist()
