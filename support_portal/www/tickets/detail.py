@@ -1,7 +1,9 @@
 import frappe
 from babel.dates import format_datetime
 def get_context(context):
-
+    frappe.clear_cache()
+        
+    frappe.website.render.clear_cache()
     query_params = frappe.request.args
 
     code = query_params.get("code")
