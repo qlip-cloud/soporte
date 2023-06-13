@@ -1,5 +1,7 @@
 import frappe
 from babel.dates import format_datetime
+from support_portal.services.get_customer_id import handler as get_customer_id
+
 def get_context(context):
     frappe.clear_cache()
         
@@ -8,7 +10,8 @@ def get_context(context):
 
     code = query_params.get("code")
 
-    context.issue = frappe.get_doc("Issue", code)
+    context.issue = get_issue(code)
+    
     context.products = frappe.db.get_list("Support product", fields = ["*"])
     context.types = frappe.db.get_list("Support type", fields = ["*"])
     context.priorities = frappe.db.get_list("Issue Priority", fields = ["*"])
@@ -32,8 +35,15 @@ def handler(subject, producto ,priority, tipo):
     doc.save()
     frappe.db.commit()
 
+def get_issue(code):
 
+    result = frappe.db.get_list("Issue", filters = {"name": code, "customer": get_customer_id()}, fields = ["*"])
+    
+    if result:
 
+        return result[0]
+    
+    raise Exception("Usuario no permitido")
 
 
 
