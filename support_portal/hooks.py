@@ -173,3 +173,14 @@ user_data_fields = [
 # 	"support_portal.auth.validate"
 # ]
 
+#fixtures = [ "Role", "Issue Priority" ]
+fixtures = [
+    {"doctype": "Role", "filters": [
+        [
+            "name", "in", [
+                "Support Team",
+                "Customer"
+            ]
+        ]
+    ]}
+]
