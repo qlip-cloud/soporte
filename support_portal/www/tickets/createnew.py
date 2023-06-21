@@ -12,7 +12,6 @@ def get_context(context):
 @frappe.whitelist()
 def handler(subject, producto ,priority, tipo):
 
-
     doc = frappe.new_doc('Issue')
     doc.subject = subject
     doc.priority = priority
@@ -21,6 +20,11 @@ def handler(subject, producto ,priority, tipo):
     doc.insert()
 
     frappe.db.commit()
+
+    var = {"id_control": doc.name}
+    print(var)
+
+    return var
 
 
 
