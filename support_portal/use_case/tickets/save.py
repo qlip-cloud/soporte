@@ -14,23 +14,19 @@ def handler(subject, producto ,priority, tipo, description):
 
     frappe.db.commit()
 
-
     print(doc)
-
 
     frappe.clear_cache()
 
     frappe.website.render.clear_cache()
     
-    return{
-       "status":200
-       # "data":{
-       #     "status":status, 
-       #     "subject":subject, 
-       #     "priority":priority, 
-       #     "tipo":tipo
-       # }
+    var = {
+       "status":200,
+       "id_control": doc.name
     }
+
+    print(var)
+    return var
 
 
 
