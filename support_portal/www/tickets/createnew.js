@@ -5,15 +5,16 @@ $(document).ready(function() {
             producto:$("#producto").val(), 
             priority:$("#priority").val(), 
             tipo:$("#tipo").val(),
-            description:$("#description").val()        
-        }
+            description:$("#description").val(), 
+            comment:$("#comment").val()
+            }
         method = "support_portal.use_case.tickets.save.handler"
         callback = (data) => {
             console.log("data", data)
         //    window.location.href = "/tickets";
             update(data.id_control)
         }
-
+        console.log(payload, method)
         send_petition(payload, method, callback)
     })
 })

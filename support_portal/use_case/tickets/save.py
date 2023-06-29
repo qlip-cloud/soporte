@@ -1,8 +1,9 @@
 import frappe 
+from  frappe.desk.form.utils import add_comment
+
 
 @frappe.whitelist()
-def handler(subject, producto ,priority, tipo, description):
-
+def handler(subject, producto ,priority, tipo, description, comment):
 
     doc = frappe.new_doc('Issue')
     doc.subject = subject
@@ -12,9 +13,14 @@ def handler(subject, producto ,priority, tipo, description):
     doc.description = description
     doc.insert()
 
-    frappe.db.commit()
+   
+    user = frappe.session.user
 
-    print(doc)
+
+    resp = add_comment(reference_doctype= "Issue", reference_name= doc.name, content=comment, comment_email= user, comment_by= user)
+    print(resp)
+
+    frappe.db.commit()
 
     frappe.clear_cache()
 
