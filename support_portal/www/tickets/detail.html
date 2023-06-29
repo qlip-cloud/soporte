@@ -2,22 +2,22 @@
 
 <div>
     {% block page_content %}
+
+    {% if issue.status == "Closed" %}
     <div>       
         <div class="flex">        
-            <h3 class="ellipsis title-text" title="Name" id="subject">{{issue.subject}}</h3>        
-            <span class="indicator-pill whitespace-nowrap green"><span>{{issue.status}}</span>
+            <h3 class="ellipsis title-text" title="Name" id="subject">{{issue.subject}}</h3> 
+            
+
+            
+            <span class="indicator-pill whitespace-nowrap red"><span>{{issue.status}}</span>
+            
             </span>
             <div class="flex col page-actions justify-content-end">
                 <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
             </div>    
                 <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets">Atras</a>
-            <button style="margin-right: 10px;" data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
-                Cerrar ticket
-            </button> 
-            
-            <button class="btn btn-primary btn-sm primary-action" id="save" data-id="{{issue.name}}">
-                Guardar cambios
-            </button>
+   
         </div>             
     </div>
 
@@ -31,71 +31,9 @@
         </tr>
         <tbody>
             <tr>
-                <td>
-                    <div class="control-input-wrapper">                        
-                        <div class="control-input floating-label  flex align-center">
-                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" >
-                                {% for product in products%}
-                                    <option value="{{product.name}}" {{ '' if issue.producto != product.name else "Selected"}}>{{product.name}}</option>
-                                {% endfor %}
-                                <!--option value={{issue.producto}}>{{issue.producto}}</option>
-                                <option value="qlip">qlip</option-->
-                            </select>
-                            <div class="select-icon ">
-                                <svg class="icon icon-sm">
-                                <use class="" href="#icon-select"></use>
-                            </svg>
-                            </div>
-                        </div>						
-                        <p class="help-box small text-muted hidden-xs"></p>					
-                    </div>        
-                </td>
-                <td>
-                    <div class="control-input-wrapper">                        
-                        <div class="control-input floating-label  flex align-center">
-                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue" >
-                                {% for priority in priorities%}
-                                    <option value="{{priority.name}}" {{ '' if issue.priority != priority.name else "Selected"}}>{{priority.name}}</option>
-                                {% endfor %}
-
-                                <!--option value={{issue.priority}}>{{issue.priority}}</option>
-                                <option value="Bajo">Bajo</option>
-                                <option value="Medio">Medio</option>
-                                <option value="Alto">Alto</option>
-                                <option value="Critica">Critica</option-->
-                            </select>
-                            <div class="select-icon ">
-                                <svg class="icon icon-sm">
-                                <use class="" href="#icon-select"></use>
-                            </svg>
-                            </div>
-                        </div>						
-                        <p class="help-box small text-muted hidden-xs"></p>					
-                    </div>                
-                </td>
-                <td>
-                    <div class="control-input-wrapper">                        
-                        <div class="control-input floating-label  flex align-center">
-                            <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="tipo" data-doctype="Issue" >
-                                {% for type in types%}
-                                    <option value="{{type.name}}" {{ '' if issue.tipo != type.name else "Selected"}}>{{type.name}}</option>
-                                {% endfor %}
-                                
-                                <!--option value={{issue.tipo}}>{{issue.tipo}}</option>
-                                <option value="Solicitud">Solicitud</option>
-                                <option value="Pregunta">Pregunta</option>
-                                <option value="Problema">Problema</option-->
-                            </select>
-                            <div class="select-icon ">
-                                <svg class="icon icon-sm">
-                                <use class="" href="#icon-select"></use>
-                            </svg>
-                            </div>
-                        </div>						
-                        <p class="help-box small text-muted hidden-xs"></p>					
-                    </div>
-                </td>
-                
+                <td>{{issue.producto}}</td>
+                <td>{{issue.priority}}</td>
+                <td>{{issue.tipo}}</td>                
             </tr>            
         </tbody>
     </table>
@@ -108,28 +46,14 @@
         {{issue.description}}
     </div>
 
-    <hr class="rounded">
-
-    <div>
-        <div class="comment-input-header">
-            <span>Adjuntar documento</span>
-        </div>
-    <button class="btn btn-default btn-sm btn-attach" data-fieldtype="Attach" data-fieldname="adjuntar_documento" data-doctype="Issue" data-target="#upload_picture" data-toggle="modal">Adjuntar</button>    
-    </div>
 
     <hr class="rounded">
 
 
     <div class="comment-input-wrapper">
         <div class="comment-input-header">
-            <span>Comentario</span>
+            <span>Comentarios</span>
         </div>
-        <div class="comment-input-container">
-            <textarea  autocomplete="off" class="input-with-feedback form-control floating-input bold" maxlength="140" data-fieldtype="Data" data-doctype="Issue" id="comment"></textarea>
-        </div>
-        <button style="margin-top: 10px;" class="btn btn-primary btn-comment btn-xs" id = "btn_comment" data-id="{{issue.name}}" data-user="{{user}}">
-            Añadir Comentario
-        </button>
     </div>
 
 
@@ -142,66 +66,212 @@
         {%endfor%}
     </div>
     
-    <div class="modal fade" id="upload_picture" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1051 !important;">
-        <div class="modal-dialog " role="document">
-            <div class="modal-content" >
-                <div class="modal-header justify-content-center">
     
-                        <div class="col-sm-12 text-center">
-                   
-                            <h5 class="modal-title text-center" style = "max-width: 100% !important;" id="exampleModalLabel">Seleccionar imagen</h5>
-                        </div>
-                        <!--div class="col-sm-2 text-center">
+
+        {% else %}
+        <div>       
+            <div class="flex">        
+                <h3 class="ellipsis title-text" title="Name" id="subject">{{issue.subject}}</h3> 
+                
     
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div-->
+                
+                <span class="indicator-pill whitespace-nowrap green"><span>{{issue.status}}</span>
+                
+                </span>
+                <div class="flex col page-actions justify-content-end">
+                    <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
+                </div>    
+                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets">Atras</a>
+                <button style="margin-right: 10px;" data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
+                    Cerrar ticket
+                </button> 
+                
+                <button class="btn btn-primary btn-sm primary-action" id="save" data-id="{{issue.name}}">
+                    Guardar cambios
+                </button>
+            </div>             
+        </div>
     
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-sm-6 text-center">
-                                <img id="blah" width="150px" height="150px" style = "max-width: 150px; max-height: 150px;" src="https://via.placeholder.com/150" alt="Tu imagen" />
-                            </div>
-                        </div>
-                        <div class="row justify-content-center" style="margin-top: 10px;">
-                            <div class="col-sm-6 text-center">
-                                <div class="file-select" id="src-file1" >
-                                    <input type="file"  name="src-file1" id="imgInp" aria-label="Archivo">
+     
+    
+        <table style="margin-top: 20px;" class="table">
+            <tr>
+                <td>Producto</td>
+                <td>Prioridad</td>
+                <td>Tipo</td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="control-input-wrapper">                        
+                            <div class="control-input floating-label  flex align-center">
+                                <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" >
+                                    {% for product in products%}
+                                        <option value="{{product.name}}" {{ '' if issue.producto != product.name else "Selected"}}>{{product.name}}</option>
+                                    {% endfor %}
+                                    <!--option value={{issue.producto}}>{{issue.producto}}</option>
+                                    <option value="qlip">qlip</option-->
+                                </select>
+                                <div class="select-icon ">
+                                    <svg class="icon icon-sm">
+                                    <use class="" href="#icon-select"></use>
+                                </svg>
                                 </div>
+                            </div>						
+                            <p class="help-box small text-muted hidden-xs"></p>					
+                        </div>        
+                    </td>
+                    <td>
+                        <div class="control-input-wrapper">                        
+                            <div class="control-input floating-label  flex align-center">
+                                <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue" >
+                                    {% for priority in priorities%}
+                                        <option value="{{priority.name}}" {{ '' if issue.priority != priority.name else "Selected"}}>{{priority.name}}</option>
+                                    {% endfor %}
     
-                            </div>
-    
+                                    <!--option value={{issue.priority}}>{{issue.priority}}</option>
+                                    <option value="Bajo">Bajo</option>
+                                    <option value="Medio">Medio</option>
+                                    <option value="Alto">Alto</option>
+                                    <option value="Critica">Critica</option-->
+                                </select>
+                                <div class="select-icon ">
+                                    <svg class="icon icon-sm">
+                                    <use class="" href="#icon-select"></use>
+                                </svg>
+                                </div>
+                            </div>						
+                            <p class="help-box small text-muted hidden-xs"></p>					
+                        </div>                
+                    </td>
+                    <td>
+                        <div class="control-input-wrapper">                        
+                            <div class="control-input floating-label  flex align-center">
+                                <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="tipo" data-doctype="Issue" >
+                                    {% for type in types%}
+                                        <option value="{{type.name}}" {{ '' if issue.tipo != type.name else "Selected"}}>{{type.name}}</option>
+                                    {% endfor %}
+                                    
+                                    <!--option value={{issue.tipo}}>{{issue.tipo}}</option>
+                                    <option value="Solicitud">Solicitud</option>
+                                    <option value="Pregunta">Pregunta</option>
+                                    <option value="Problema">Problema</option-->
+                                </select>
+                                <div class="select-icon ">
+                                    <svg class="icon icon-sm">
+                                    <use class="" href="#icon-select"></use>
+                                </svg>
+                                </div>
+                            </div>						
+                            <p class="help-box small text-muted hidden-xs"></p>					
                         </div>
-                        <div class="row justify-content-center" style="margin-top: 10px;">
-                            <div class="col-sm-6 text-center picture-loading" >
+                    </td>
+                    
+                </tr>            
+            </tbody>
+        </table>
+        
+        <hr class="rounded">
+        <div class="comment-input-header">
+            <span>Descripcion</span>
+        </div>
+        <div>
+            {{issue.description}}
+        </div>
+    
+        <hr class="rounded">
+    
+        <div>
+            <div class="comment-input-header">
+                <span>Adjuntar documento</span>
+            </div>
+        <button class="btn btn-default btn-sm btn-attach" data-fieldtype="Attach" data-fieldname="adjuntar_documento" data-doctype="Issue" data-target="#upload_picture" data-toggle="modal">Adjuntar</button>    
+        </div>
+    
+        <hr class="rounded">
+    
+    
+        <div class="comment-input-wrapper">
+            <div class="comment-input-header">
+                <span>Comentario</span>
+            </div>
+            <div class="comment-input-container">
+                <textarea  autocomplete="off" class="input-with-feedback form-control floating-input bold" maxlength="140" data-fieldtype="Data" data-doctype="Issue" id="comment"></textarea>
+            </div>
+            <button style="margin-top: 10px;" class="btn btn-primary btn-comment btn-xs" id = "btn_comment" data-id="{{issue.name}}" data-user="{{user}}">
+                Añadir Comentario
+            </button>
+        </div>
+    
+    
+        <div id="comment_area">
+            {% for comment in comments%}
+            <div style="margin-top: 20px">
+                {{comment.comment_email}} {{comment.creation}}:
+                <p>{{comment.content}}</p>
+            </div>
+            {%endfor%}
+        </div>
+        
+        <div class="modal fade" id="upload_picture" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1051 !important;">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content" >
+                    <div class="modal-header justify-content-center">
+        
+                            <div class="col-sm-12 text-center">
+                       
+                                <h5 class="modal-title text-center" style = "max-width: 100% !important;" id="exampleModalLabel">Seleccionar imagen</h5>
+                            </div>
+                            <!--div class="col-sm-2 text-center">
+        
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div-->
+        
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-sm-6 text-center">
+                                    <img id="blah" width="150px" height="150px" style = "max-width: 150px; max-height: 150px;" src="https://via.placeholder.com/150" alt="Tu imagen" />
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" style="margin-top: 10px;">
+                                <div class="col-sm-6 text-center">
+                                    <div class="file-select" id="src-file1" >
+                                        <input type="file"  name="src-file1" id="imgInp" aria-label="Archivo">
+                                    </div>
+        
+                                </div>
+        
+                            </div>
+                            <div class="row justify-content-center" style="margin-top: 10px;">
+                                <div class="col-sm-6 text-center picture-loading" >
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="container">
-    
-                        <div class="row ">
-    
-                            <div class="col-sm-12 text-right">
-                                <input type="hidden" name="" id = "id_control" value = "">
-                                <input type="hidden" name="" id = "img_control" value = "">
-                                <input type="button" style="margin-top: 0;max-width: 35%;" id="upload" class="btn btn_standard" value="Seleccionar" data-id="{{issue.name}}">
-    
+                    <div class="modal-footer">
+                        <div class="container">
+        
+                            <div class="row ">
+        
+                                <div class="col-sm-12 text-right">
+                                    <input type="hidden" name="" id = "id_control" value = "">
+                                    <input type="hidden" name="" id = "img_control" value = "">
+                                    <input type="button" style="margin-top: 0;max-width: 35%;" id="upload" class="btn btn_standard" value="Seleccionar" data-id="{{issue.name}}">
+        
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal" id="blockscreen-modal" data-backdrop="static" data-keyboard="false" tabindex="-1">
+        <div class="modal" id="blockscreen-modal" data-backdrop="static" data-keyboard="false" tabindex="-1">
 
-
-
+        {% endif %}
 
     {% endblock %}
 </div>
