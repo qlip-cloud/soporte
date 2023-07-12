@@ -17,6 +17,10 @@ $(document).ready(function() {
         console.log(payload, method)
         send_petition(payload, method, callback)
     })
+    $("#imgInp").on("change", function(){
+        $("#upload_picture").modal("hide")
+        $("#adjuntado").show()
+    })
 })
 
 function send_petition_upload(module_root, method, formData, callback, url = null){
