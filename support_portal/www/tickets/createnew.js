@@ -19,7 +19,10 @@ $(document).ready(function() {
     })
     $("#imgInp").on("change", function(){
         $("#upload_picture").modal("hide")
+        filename =  $('#imgInp').val()
+        $("#adjuntado").text("✔ "+ filename.substring(12))
         $("#adjuntado").show()
+
     })
 })
 
