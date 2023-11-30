@@ -1,7 +1,9 @@
 import frappe
 
 def get_context(context):
-    
+    frappe.clear_cache()
+        
+    frappe.website.render.clear_cache()
     #context.issues = frappe.db.get_list("Issue", fields = ["*"])
 
     context.products = frappe.db.get_list("Support product", fields = ["*"])
@@ -12,7 +14,6 @@ def get_context(context):
 @frappe.whitelist()
 def handler(subject, producto ,priority, tipo):
 
-
     doc = frappe.new_doc('Issue')
     doc.subject = subject
     doc.priority = priority
@@ -21,6 +22,11 @@ def handler(subject, producto ,priority, tipo):
     doc.insert()
 
     frappe.db.commit()
+
+    var = {"id_control": doc.name}
+    print(var)
+
+    return var
 
 
 

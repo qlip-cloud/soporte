@@ -1,10 +1,7 @@
 $(document).ready(function() {
     $("#upload").on("click", function(){
-
         id_control = $(this).data('id')
-        
         fileToUpload = $('#imgInp').prop('files');
-    
         if ($('#imgInp').val()){
     
     //      $(".picture-loading").html("Cargando...")
