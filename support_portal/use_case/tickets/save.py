@@ -7,13 +7,13 @@ def handler(subject, producto ,priority, tipo, description, comment):
 
     doc = frappe.new_doc('Issue')
 
-    contact_doc_name = frappe.db.get_value('Contact', filters={'user': frappe.session.user_email}, fieldname=['name'])
+    contact_doc_name = frappe.db.get_value('Contact', filters={'email_id': frappe.session.user_email}, fieldname=['name'])
 
     if contact_doc_name:
       client_doc_name = frappe.db.get_value('Dynamic Link', filters={'parenttype': 'Contact', 'link_doctype':'Customer', 'parent':contact_doc_name}, fieldname=['link_name'],)
 
       if client_doc_name:
-            band_support_product_list = frappe.db.get_list('Dynamic Link', filters={'parenttype': 'Cliente', 'link_doctype':'Band_Support_Product', 'parent':client_doc_name}, fields=['*'],)
+            band_support_product_list = frappe.db.get_list('Band_Support_Product', filters={'parent': client_doc_name, 'parenttype':'Customer'}, fields=['*'],)
 
             exist = False
 
@@ -25,7 +25,7 @@ def handler(subject, producto ,priority, tipo, description, comment):
                         break
                     
             if not exist:
-               client_band = frappe.db.get_value('Cliente', filters={'name':client_doc_name}, fieldname=['band'],)
+               client_band = frappe.db.get_value('Customer', filters={'name':client_doc_name}, fieldname=['band'],)
                doc.band = client_band
     
     
