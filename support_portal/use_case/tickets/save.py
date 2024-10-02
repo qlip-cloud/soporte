@@ -21,12 +21,12 @@ def handler(subject, producto ,priority, tipo, description, comment):
                 for b in band_support_product_list:
                     if b.support_product == producto:
                         exist = True
-                        doc.band = b.band
+                        doc.band_hidden = b.band
                         break
                     
             if not exist:
                client_band = frappe.db.get_value('Customer', filters={'name':client_doc_name}, fieldname=['band'],)
-               doc.band = client_band
+               doc.band_hidden = client_band
     
     
     doc.subject = subject
