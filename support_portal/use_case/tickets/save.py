@@ -5,57 +5,54 @@ from  frappe.desk.form.utils import add_comment
 @frappe.whitelist()
 def handler(subject, producto ,priority, tipo, description, comment):
 
-    doc = frappe.new_doc('Issue')
+   doc = frappe.new_doc('Issue')
+   doc.subject = subject
+   doc.priority = priority
+   doc.tipo = tipo
+   doc.producto = producto
+   doc.description = description
+   doc.insert()
 
-    contact_doc_name = frappe.db.get_value('Contact', filters={'email_id': frappe.session.user_email}, fieldname=['name'])
+   user = frappe.session.user
 
-    if contact_doc_name:
-      client_doc_name = frappe.db.get_value('Dynamic Link', filters={'parenttype': 'Contact', 'link_doctype':'Customer', 'parent':contact_doc_name}, fieldname=['link_name'],)
+   resp = add_comment(reference_doctype= "Issue", reference_name= doc.name, content=comment, comment_email= user, comment_by= user)
+
+   frappe.db.commit()
+
+   contact_doc_name = frappe.db.get_value('Contact', filters={'email_id': frappe.session.user_email}, fieldname=['name'])
+
+   if contact_doc_name:
+      client_doc_name = frappe.db.get_value('Dynamic Link', filters={'parenttype': 'Contact', 'link_doctype':'Customer', 'parent':contact_doc_name}, fieldname=['link_name'])
 
       if client_doc_name:
-            band_support_product_list = frappe.db.get_list('Band_Support_Product', filters={'parent': client_doc_name, 'parenttype':'Customer'}, fields=['*'],)
+            band_support_product_list = frappe.db.get_list('Band_Support_Product', filters={'parent': client_doc_name, 'parenttype':'Customer'}, fields=['*'])
 
             exist = False
 
             if band_support_product_list:
-                for b in band_support_product_list:
-                    if b.support_product == producto:
+                  for b in band_support_product_list:
+                     if b.support_product == producto:
                         exist = True
                         doc.band_hidden = b.band
                         break
-                    
+                  
             if not exist:
-               client_band = frappe.db.get_value('Customer', filters={'name':client_doc_name}, fieldname=['band'],)
+               client_band = frappe.db.get_value('Customer', filters={'name':client_doc_name}, fieldname=['band'])
                doc.band_hidden = client_band
+
+   doc.save()
+   frappe.db.commit()
+
+   frappe.clear_cache()
+
+   frappe.website.render.clear_cache()
     
-    
-    doc.subject = subject
-    doc.priority = priority
-    doc.tipo = tipo
-    doc.producto = producto
-    doc.description = description
-    doc.insert()
+   var = {
+      "status":200,
+      "id_control": doc.name
+   }
 
-   
-    user = frappe.session.user
-
-
-    resp = add_comment(reference_doctype= "Issue", reference_name= doc.name, content=comment, comment_email= user, comment_by= user)
-    print(resp)
-
-    frappe.db.commit()
-
-    frappe.clear_cache()
-
-    frappe.website.render.clear_cache()
-    
-    var = {
-       "status":200,
-       "id_control": doc.name
-    }
-
-    print(var)
-    return var
+   return var
 
 
 
