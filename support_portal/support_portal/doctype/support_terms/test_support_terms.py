@@ -4,5 +4,5 @@
 # import frappe
 import unittest
 
-class TestSupportCopyright(unittest.TestCase):
+class TestSupportTerms(unittest.TestCase):
 	pass
