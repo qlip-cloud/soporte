@@ -19,12 +19,12 @@ def handler(subject, producto ,priority, tipo):
     doc.priority = priority
     doc.tipo = tipo
     doc.producto = producto
+    doc.via_customer_portal = True
     doc.insert()
 
     frappe.db.commit()
 
     var = {"id_control": doc.name}
-    print(var)
 
     return var
 

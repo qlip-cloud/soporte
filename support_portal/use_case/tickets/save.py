@@ -11,6 +11,7 @@ def handler(subject, producto ,priority, tipo, description, comment):
    doc.tipo = tipo
    doc.producto = producto
    doc.description = description
+   doc.via_customer_portal = True
 
    # band section
    contact_doc_name = frappe.db.get_value('Contact', filters={'email_id': frappe.session.user}, fieldname=['name'])

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    search_items_options_by_customer()
+
     $("#upload").on("click", function(){
         id_control = $(this).data('id')
         fileToUpload = $('#imgInp').prop('files');
