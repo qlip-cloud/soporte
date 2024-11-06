@@ -1,0 +1,147 @@
+{
+ "actions": [],
+ "creation": "2024-11-06 14:02:51.282354",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "informaci\u00f3n_section",
+  "nombre_de_derecho",
+  "descripcion_del_derecho",
+  "estado",
+  "cliente",
+  "numero_oportunidad",
+  "fecha_de_inicio",
+  "fecha_de_finalizacion",
+  "producto",
+  "nombre_producto",
+  "propietario",
+  "terminos_de_derecho_column",
+  "terminos_de_derecho",
+  "tipo_de_asignaci\u00f3n",
+  "reducir_restantes_en",
+  "terminos_totales",
+  "terminos_restantes"
+ ],
+ "fields": [
+  {
+   "bold": 1,
+   "fieldname": "informaci\u00f3n_section",
+   "fieldtype": "Heading",
+   "label": "Informaci\u00f3n"
+  },
+  {
+   "fieldname": "nombre_de_derecho",
+   "fieldtype": "Data",
+   "label": "Nombre de Derecho"
+  },
+  {
+   "fieldname": "descripcion_del_derecho",
+   "fieldtype": "Data",
+   "label": " Descripcion del derecho"
+  },
+  {
+   "fieldname": "estado",
+   "fieldtype": "Select",
+   "label": "Estado",
+   "options": "Activo\nExpirado"
+  },
+  {
+   "fieldname": "cliente",
+   "fieldtype": "Link",
+   "label": "Cliente",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "numero_oportunidad",
+   "fieldtype": "Data",
+   "label": " Numero oportunidad"
+  },
+  {
+   "fieldname": "fecha_de_inicio",
+   "fieldtype": "Date",
+   "label": "Fecha de inicio"
+  },
+  {
+   "fieldname": "fecha_de_finalizacion",
+   "fieldtype": "Data",
+   "label": "Fecha de Finalizacion"
+  },
+  {
+   "fieldname": "producto",
+   "fieldtype": "Link",
+   "label": "Producto",
+   "options": "Item"
+  },
+  {
+   "fetch_from": "producto.description",
+   "fieldname": "nombre_producto",
+   "fieldtype": "Data",
+   "label": "Nombre Producto",
+   "read_only": 1
+  },
+  {
+   "fieldname": "propietario",
+   "fieldtype": "Link",
+   "label": "Propietario",
+   "options": "User"
+  },
+  {
+   "bold": 1,
+   "fieldname": "terminos_de_derecho_column",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "terminos_de_derecho",
+   "fieldtype": "Heading",
+   "label": "Terminos de Derecho"
+  },
+  {
+   "fieldname": "tipo_de_asignaci\u00f3n",
+   "fieldtype": "Select",
+   "label": " Tipo de asignaci\u00f3n",
+   "options": "N\u00famero de casos\nN\u00famero de Horas"
+  },
+  {
+   "fieldname": "reducir_restantes_en",
+   "fieldtype": "Select",
+   "label": " Reducir restantes en",
+   "options": "Creaci\u00f3n de casos\nResoluci\u00f3n Casos"
+  },
+  {
+   "fieldname": "terminos_totales",
+   "fieldtype": "Int",
+   "label": " Terminos Totales",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "terminos_restantes",
+   "fieldtype": "Data",
+   "label": " Terminos Restantes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-06 14:32:20.847940",
+ "modified_by": "Administrator",
+ "module": "Support Portal",
+ "name": "Support Copyright",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
