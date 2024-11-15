@@ -23,6 +23,7 @@
   "disminuir_por",
   "cantidad_total",
   "cantidad_aplicada",
+  "cantidad_facturada",
   "cantidad_descontable"
  ],
  "fields": [
@@ -148,11 +149,18 @@
    "label": " Tipo de asignaci\u00f3n",
    "options": "N\u00famero de casos\nN\u00famero de Horas",
    "reqd": 1
+  },
+  {
+   "fieldname": "cantidad_facturada",
+   "fieldtype": "Int",
+   "label": "Cantidad Facturada",
+   "non_negative": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-15 11:25:49.863380",
+ "modified": "2024-11-15 14:21:27.256085",
  "modified_by": "Administrator",
  "module": "Support Portal",
  "name": "Support Terms",
