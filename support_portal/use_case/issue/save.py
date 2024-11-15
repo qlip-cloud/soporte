@@ -1,4 +1,5 @@
 import frappe 
+from frappe import _
 
 def after_insert(issue, method):
     
@@ -27,10 +28,12 @@ def update(issue, method):
                 )
 
         tah = 0
+        tih = 0
 
         for t in sup_ter:
-            tah += t.horas_aplicadas
-            tih += t.horas_facturadas
+            if sup_ter.status == _("Closed")
+                tah += t.horas_aplicadas
+                tih += t.horas_facturadas
 
         support_term = frappe.get_doc('Support Terms', issue.support_terms)
         
