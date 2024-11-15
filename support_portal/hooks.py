@@ -102,6 +102,9 @@ doc_events = {
 	"Timesheet": {
 		"after_insert": ["support_portal.use_case.timesheet.save.after_insert"],
 		"on_update": ["support_portal.use_case.timesheet.save.after_insert"],
+    },
+	"Support Terms": {
+		"on_update": ["support_portal.use_case.support_terms.save.update"],
     }
 }
 
