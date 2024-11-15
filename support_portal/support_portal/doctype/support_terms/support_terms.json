@@ -19,7 +19,7 @@
   "fecha_de_finalizacion",
   "producto",
   "terminos_de_derecho_column",
-  "tipo_de_asignaci\u00f3n",
+  "tipo_de_asignacion",
   "disminuir_por",
   "cantidad_total",
   "cantidad_aplicada",
@@ -89,13 +89,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "tipo_de_asignaci\u00f3n",
-   "fieldtype": "Select",
-   "label": " Tipo de asignaci\u00f3n",
-   "options": "N\u00famero de casos\nN\u00famero de Horas",
-   "reqd": 1
-  },
-  {
    "fetch_from": "cliente.customer_name",
    "fieldname": "nombre_cliente",
    "fieldtype": "Data",
@@ -140,17 +133,26 @@
   {
    "fieldname": "cantidad_aplicada",
    "fieldtype": "Data",
-   "label": "Cantidad Aplicada"
+   "label": "Cantidad Aplicada",
+   "read_only": 1
   },
   {
    "fieldname": "cantidad_descontable",
    "fieldtype": "Data",
-   "label": " Cantidad Descontable"
+   "label": " Cantidad Descontable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tipo_de_asignacion",
+   "fieldtype": "Select",
+   "label": " Tipo de asignaci\u00f3n",
+   "options": "N\u00famero de casos\nN\u00famero de Horas",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-07 14:08:25.915303",
+ "modified": "2024-11-15 11:25:49.863380",
  "modified_by": "Administrator",
  "module": "Support Portal",
  "name": "Support Terms",
