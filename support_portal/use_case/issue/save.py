@@ -20,30 +20,31 @@ def update(issue, method):
 
     print("issue " + method)
 
-    sup_ter = frappe.db.get_list('Issue',
-                filters={'support_terms': issue.support_terms},
-                fields=['*']
-            )
+    if issue.support_terms:
+        sup_ter = frappe.db.get_list('Issue',
+                    filters={'support_terms': issue.support_terms},
+                    fields=['*']
+                )
 
-    tah = 0
+        tah = 0
 
-    for t in sup_ter:
-        tah += t.horas_aplicadas
+        for t in sup_ter:
+            tah += t.horas_aplicadas
 
-    support_term = frappe.get_doc('Support Terms', issue.support_terms)
-    
-
-    if support_term.tipo_de_asignacion == "Número de casos":
-        support_term.cantidad_aplicada = len(sup_ter)
-    if support_term.tipo_de_asignacion == "Número de Horas":
-        support_term.cantidad_aplicada = tah
-
-    if support_term.cantidad_total:
-        support_term.cantidad_descontable = support_term.cantidad_total - support_term.cantidad_aplicada
-    else:
-        support_term.cantidad_descontable = support_term.cantidad_aplicada
+        support_term = frappe.get_doc('Support Terms', issue.support_terms)
         
-    support_term.save()
+
+        if support_term.tipo_de_asignacion == "Número de casos":
+            support_term.cantidad_aplicada = len(sup_ter)
+        if support_term.tipo_de_asignacion == "Número de Horas":
+            support_term.cantidad_aplicada = tah
+
+        if support_term.cantidad_total:
+            support_term.cantidad_descontable = support_term.cantidad_total - support_term.cantidad_aplicada
+        else:
+            support_term.cantidad_descontable = support_term.cantidad_aplicada
+            
+        support_term.save()
 
     return issue
 
