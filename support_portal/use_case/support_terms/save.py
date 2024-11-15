@@ -1,4 +1,5 @@
 import frappe
+from frappe import _
 
 def update(support_terms, method):
 
@@ -13,8 +14,9 @@ def update(support_terms, method):
     tih = 0
 
     for t in sup_ter:
-        tah += t.horas_aplicadas    
-        tih += t.horas_facturadas   
+        if sup_ter.status == _("Closed")
+            tah += t.horas_aplicadas
+            tih += t.horas_facturadas 
 
     if support_terms.tipo_de_asignacion == "Número de casos":
         support_terms.cantidad_aplicada = len(sup_ter)
