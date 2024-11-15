@@ -18,14 +18,14 @@ def update(support_terms, method):
 
     if support_terms.tipo_de_asignacion == "Número de casos":
         support_terms.cantidad_aplicada = len(sup_ter)
-        support_terms.cantidad_facturadas = len(sup_ter)
+        support_terms.cantidad_facturada = len(sup_ter)
     if support_terms.tipo_de_asignacion == "Número de Horas":
         support_terms.cantidad_aplicada = tah
-        support_terms.cantidad_facturadas = tih
+        support_terms.cantidad_facturada = tih
 
     if support_terms.cantidad_total:
-        support_terms.cantidad_descontable = support_terms.cantidad_total - support_terms.cantidad_facturadas
+        support_terms.cantidad_descontable = support_terms.cantidad_total - support_terms.cantidad_facturada
     else:
-        support_terms.cantidad_descontable = support_terms.cantidad_facturadas
+        support_terms.cantidad_descontable = support_terms.cantidad_facturada
 
     return support_terms
