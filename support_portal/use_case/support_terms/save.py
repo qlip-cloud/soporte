@@ -15,10 +15,9 @@ def update(support_terms, method):
     cas = 0
 
     for t in sup_ter:
-        if t.status == "Closed":
-            tah += t.horas_aplicadas
-            tih += t.horas_facturadas 
-            cas += 1
+        tah += t.horas_aplicadas
+        tih += t.horas_facturadas 
+        cas += 1
 
     if support_terms.tipo_de_asignacion == "Número de casos":
         support_terms.cantidad_aplicada = cas
