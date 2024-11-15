@@ -29,18 +29,20 @@ def update(issue, method):
 
         tah = 0
         tih = 0
+        cas = 0
 
         for t in sup_ter:
-            if t.status == _("Closed"):
+            if t.status == "Closed":
                 tah += t.horas_aplicadas
                 tih += t.horas_facturadas
+                cas += 1
 
         support_term = frappe.get_doc('Support Terms', issue.support_terms)
         
 
         if support_term.tipo_de_asignacion == "Número de casos":
-            support_term.cantidad_aplicada = len(sup_ter)
-            support_term.cantidad_facturada = len(sup_ter)
+            support_term.cantidad_aplicada = cas
+            support_term.cantidad_facturada = cas
         if support_term.tipo_de_asignacion == "Número de Horas":
             support_term.cantidad_aplicada = tah
             support_term.cantidad_facturada = tih
