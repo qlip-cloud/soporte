@@ -32,10 +32,9 @@ def update(issue, method):
         cas = 0
 
         for t in sup_ter:
-            if t.status == "Closed":
-                tah += t.horas_aplicadas
-                tih += t.horas_facturadas
-                cas += 1
+            tah += t.horas_aplicadas
+            tih += t.horas_facturadas
+            cas += 1
 
         support_term = frappe.get_doc('Support Terms', issue.support_terms)
         
