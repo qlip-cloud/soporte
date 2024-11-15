@@ -30,19 +30,22 @@ def update(issue, method):
 
         for t in sup_ter:
             tah += t.horas_aplicadas
+            tih += t.horas_facturadas
 
         support_term = frappe.get_doc('Support Terms', issue.support_terms)
         
 
         if support_term.tipo_de_asignacion == "Número de casos":
             support_term.cantidad_aplicada = len(sup_ter)
+            support_term.cantidad_facturada = len(sup_ter)
         if support_term.tipo_de_asignacion == "Número de Horas":
             support_term.cantidad_aplicada = tah
+            support_term.cantidad_facturada = tih
 
         if support_term.cantidad_total:
-            support_term.cantidad_descontable = support_term.cantidad_total - support_term.cantidad_aplicada
+            support_term.cantidad_descontable = support_term.cantidad_total - support_term.cantidad_facturada
         else:
-            support_term.cantidad_descontable = support_term.cantidad_aplicada
+            support_term.cantidad_descontable = support_term.cantidad_facturada
             
         support_term.save()
 
