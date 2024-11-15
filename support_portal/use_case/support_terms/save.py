@@ -14,7 +14,7 @@ def update(support_terms, method):
     tih = 0
 
     for t in sup_ter:
-        if sup_ter.status == _("Closed")
+        if sup_ter.status == _("Closed"):
             tah += t.horas_aplicadas
             tih += t.horas_facturadas 
 
