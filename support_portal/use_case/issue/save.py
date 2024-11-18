@@ -38,7 +38,7 @@ def update(issue, method):
             tah += t.horas_aplicadas
             tih += t.horas_facturadas
             casa += 1
-            if support_term.tipo_de_asignacion == "Número de casos" and issue.facturable == True:
+            if support_term.tipo_de_asignacion == "Número de casos" and t.facturable == True:
                 casf += 1
 
         if support_term.tipo_de_asignacion == "Número de casos":
