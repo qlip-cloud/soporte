@@ -633,7 +633,7 @@
    "in_preview": 0,
    "in_standard_filter": 0,
    "insert_after": "customer",
-   "label": "Customer Full Name",
+   "label": "Nombre del cliente",
    "length": 0,
    "mandatory_depends_on": null,
    "modified": "2024-11-18 11:29:22.332627",
