@@ -12,16 +12,19 @@ def update(support_terms, method):
 
     tah = 0
     tih = 0
-    cas = 0
+    casa = 0
+    casf = 0
 
     for t in sup_ter:
         tah += t.horas_aplicadas
         tih += t.horas_facturadas 
-        cas += 1
+        casa += 1
+        if support_terms.tipo_de_asignacion == "Número de casos" and sup_ter.facturada == True:
+                casf += 1
 
     if support_terms.tipo_de_asignacion == "Número de casos":
-        support_terms.cantidad_aplicada = cas
-        support_terms.cantidad_facturada = cas
+        support_terms.cantidad_aplicada = casa
+        support_terms.cantidad_facturada = casf
     if support_terms.tipo_de_asignacion == "Número de Horas":
         support_terms.cantidad_aplicada = tah
         support_terms.cantidad_facturada = tih
