@@ -35,6 +35,7 @@
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue"  >
+                                <option value=""></option>
                                 {% for product in products%}
                                     <option value="{{product.name}}">{{product.name}}</option>
                                 {% endfor %}
@@ -52,6 +53,7 @@
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="priority" data-doctype="Issue"  >
+                                <option value=""></option>
                                 {% for priority in priorities%}
                                     <option value="{{priority.name}}">{{priority.name}}</option>
                                 {% endfor %}
@@ -74,6 +76,7 @@
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="tipo" data-doctype="Issue" >
+                                <option value=""></option>  
                                 {% for type in types%}
                                     <option value="{{type.name}}">{{type.name}}</option>
                                 {% endfor %}
