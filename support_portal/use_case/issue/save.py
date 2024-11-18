@@ -27,21 +27,23 @@ def update(issue, method):
                     fields=['*']
                 )
 
+        support_term = frappe.get_doc('Support Terms', issue.support_terms)
+        
         tah = 0
         tih = 0
-        cas = 0
+        casa = 0
+        casf = 0
 
         for t in sup_ter:
             tah += t.horas_aplicadas
             tih += t.horas_facturadas
-            cas += 1
-
-        support_term = frappe.get_doc('Support Terms', issue.support_terms)
-        
+            casa += 1
+            if support_term.tipo_de_asignacion == "Número de casos" and issue.facturada == True:
+                casf += 1
 
         if support_term.tipo_de_asignacion == "Número de casos":
-            support_term.cantidad_aplicada = cas
-            support_term.cantidad_facturada = cas
+            support_term.cantidad_aplicada = casa
+            support_term.cantidad_facturada = casf
         if support_term.tipo_de_asignacion == "Número de Horas":
             support_term.cantidad_aplicada = tah
             support_term.cantidad_facturada = tih
