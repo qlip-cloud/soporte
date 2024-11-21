@@ -32,6 +32,7 @@ web_include_js = "/assets/support_portal/js/support_portal.js"
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Issue" : "public/js/issue.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -89,13 +90,23 @@ web_include_js = "/assets/support_portal/js/support_portal.js"
 # ---------------
 # Hook on document methods and events
 
-#doc_events = {
+doc_events = {
+    "Issue": {
+		"after_insert": ["support_portal.use_case.issue.save.after_insert"],
+		"on_update": ["support_portal.use_case.issue.save.update"],
 
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-
-# }
+    },
+	"Task": {
+		"on_update": ["support_portal.use_case.task.save.update"],
+    },
+	"Timesheet": {
+		"after_insert": ["support_portal.use_case.timesheet.save.after_insert"],
+		"on_update": ["support_portal.use_case.timesheet.save.after_insert"],
+    },
+	"Support Terms": {
+		"on_update": ["support_portal.use_case.support_terms.save.update"],
+    }
+}
 
 # Scheduled Tasks
 # ---------------
