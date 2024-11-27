@@ -23,7 +23,7 @@
   "cantidad_total",
   "cantidad_aplicada",
   "cantidad_facturada",
-  "cantidad_restante",
+  "cantidad_resta",
   "amended_from"
  ],
  "fields": [
@@ -118,15 +118,18 @@
    "reqd": 1
   },
   {
+   "default": "0",
    "fieldname": "cantidad_total",
    "fieldtype": "Int",
    "label": "Cantidad Total",
    "non_negative": 1
   },
   {
+   "default": "0",
    "fieldname": "cantidad_aplicada",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Cantidad Aplicada",
+   "non_negative": 1,
    "read_only": 1
   },
   {
@@ -137,16 +140,11 @@
    "reqd": 1
   },
   {
+   "default": "0",
    "fieldname": "cantidad_facturada",
    "fieldtype": "Int",
    "label": "Cantidad Facturada",
    "non_negative": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "cantidad_restante",
-   "fieldtype": "Data",
-   "label": " Cantidad Restante",
    "read_only": 1
   },
   {
@@ -157,12 +155,19 @@
    "options": "Support Terms",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "cantidad_resta",
+   "fieldtype": "Int",
+   "label": "Cantidad Restante",
+   "non_negative": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-27 08:37:49.426520",
+ "modified": "2024-11-27 18:05:22.612874",
  "modified_by": "Administrator",
  "module": "Support Portal",
  "name": "Support Terms",
