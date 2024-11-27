@@ -3,7 +3,8 @@ frappe.ui.form.on("Issue", {
         frm.set_query("support_terms", function() {
             return {
                 "filters": {
-                    "cliente": frm.doc.customer
+                    "cliente": frm.doc.customer,
+                    "docstatus":1
                 }
             };
         })

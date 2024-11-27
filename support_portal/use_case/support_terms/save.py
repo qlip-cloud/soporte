@@ -30,8 +30,8 @@ def update(support_terms, method):
         support_terms.cantidad_facturada = tih
 
     if support_terms.cantidad_total:
-        support_terms.cantidad_restante = support_terms.cantidad_total - support_terms.cantidad_facturada
+        support_terms.cantidad_resta = support_terms.cantidad_total - support_terms.cantidad_facturada
     else:
-        support_terms.cantidad_restante = support_terms.cantidad_facturada
+        support_terms.cantidad_resta = support_terms.cantidad_facturada
 
     return support_terms
