@@ -120,7 +120,7 @@
   {
    "default": "0",
    "fieldname": "cantidad_total",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Cantidad Total",
    "non_negative": 1
   },
@@ -128,7 +128,7 @@
    "allow_on_submit": 1,
    "default": "0",
    "fieldname": "cantidad_aplicada",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Cantidad Aplicada",
    "non_negative": 1,
    "read_only": 1
@@ -144,7 +144,7 @@
    "allow_on_submit": 1,
    "default": "0",
    "fieldname": "cantidad_facturada",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Cantidad Facturada",
    "non_negative": 1,
    "read_only": 1
@@ -162,7 +162,7 @@
    "allow_on_submit": 1,
    "default": "0",
    "fieldname": "cantidad_resta",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Cantidad Restante",
    "non_negative": 1,
    "read_only": 1
@@ -171,7 +171,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-27 18:28:25.022814",
+ "modified": "2024-11-28 13:11:31.276478",
  "modified_by": "Administrator",
  "module": "Support Portal",
  "name": "Support Terms",
