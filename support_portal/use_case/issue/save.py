@@ -49,9 +49,9 @@ def update(issue, method):
             support_term.cantidad_facturada = tih
 
         if support_term.cantidad_total:
-            support_term.cantidad_descontable = support_term.cantidad_total - support_term.cantidad_facturada
+            support_term.cantidad_resta = support_term.cantidad_total - support_term.cantidad_facturada
         else:
-            support_term.cantidad_descontable = support_term.cantidad_facturada
+            support_term.cantidad_resta = support_term.cantidad_facturada
             
         support_term.save()
 

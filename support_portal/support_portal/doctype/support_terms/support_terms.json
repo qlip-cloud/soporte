@@ -20,11 +20,11 @@
   "producto",
   "terminos_de_derecho_column",
   "tipo_de_asignacion",
-  "disminuir_por",
   "cantidad_total",
   "cantidad_aplicada",
   "cantidad_facturada",
-  "cantidad_descontable"
+  "cantidad_resta",
+  "amended_from"
  ],
  "fields": [
   {
@@ -101,8 +101,7 @@
    "fieldname": "numero_contrato",
    "fieldtype": "Link",
    "label": "Numero Contrato",
-   "options": "Contract",
-   "reqd": 1
+   "options": "Contract"
   },
   {
    "fieldname": "referencia_contrato",
@@ -119,28 +118,19 @@
    "reqd": 1
   },
   {
-   "default": "Creaci\u00f3n de casos",
-   "fieldname": "disminuir_por",
-   "fieldtype": "Select",
-   "label": " Disminuir por",
-   "options": "Creaci\u00f3n de casos"
-  },
-  {
+   "default": "0",
    "fieldname": "cantidad_total",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Cantidad Total",
    "non_negative": 1
   },
   {
+   "allow_on_submit": 1,
+   "default": "0",
    "fieldname": "cantidad_aplicada",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Cantidad Aplicada",
-   "read_only": 1
-  },
-  {
-   "fieldname": "cantidad_descontable",
-   "fieldtype": "Data",
-   "label": " Cantidad Descontable",
+   "non_negative": 1,
    "read_only": 1
   },
   {
@@ -151,16 +141,37 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
+   "default": "0",
    "fieldname": "cantidad_facturada",
-   "fieldtype": "Int",
+   "fieldtype": "Float",
    "label": "Cantidad Facturada",
+   "non_negative": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Support Terms",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "fieldname": "cantidad_resta",
+   "fieldtype": "Float",
+   "label": "Cantidad Restante",
    "non_negative": 1,
    "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "is_submittable": 1,
  "links": [],
- "modified": "2024-11-15 14:21:27.256085",
+ "modified": "2024-11-28 13:11:31.276478",
  "modified_by": "Administrator",
  "module": "Support Portal",
  "name": "Support Terms",
