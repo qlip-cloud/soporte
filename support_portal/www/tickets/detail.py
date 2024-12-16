@@ -10,12 +10,14 @@ def get_context(context):
 
     code = query_params.get("code")
 
+    context.no_cache = 1
     context.issue = get_issue(code)
     
     context.products = frappe.db.get_list("Support product", fields = ["*"])
     context.types = frappe.db.get_list("Support type", fields = ["*"])
     context.priorities = frappe.db.get_list("Issue Priority", fields = ["*"])
     context.user = frappe.session.user
+
 
     context.comments = frappe.db.get_list("Comment", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
     
