@@ -26,12 +26,11 @@ def get_context(context):
         comments[key].creation = format_datetime(comment.creation,format='short', locale='es_CO')
         comments[key].type = "comment"
 
-    for key, communications in enumerate(communications):
-        communications[key].creation = format_datetime(communications.creation,format='short', locale='es_CO')
-        communications[key].type = "communication"
+    for key, communication in enumerate(communications):
+        communication[key].creation = format_datetime(communication.creation,format='short', locale='es_CO')
+        communication[key].type = "communication"
     
-    context.comments = comments + communications
-    context.comments = sorted(context.comments, key=lambda i: i['creation'], reverse=True)
+    context.comments = sorted(comments + communications, key=lambda i: i['creation'], reverse=True)
 
 
 @frappe.whitelist()
