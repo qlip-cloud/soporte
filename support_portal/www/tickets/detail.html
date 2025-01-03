@@ -59,13 +59,13 @@
 
     <div id="comment_area">
         {% for comment in comments%}
-        <div style="margin: 20px;border: rgb(204, 204, 204) 1px;border-radius: 5px;padding:20px;">
+        <div style="margin: 20px;border: rgb(163 163 163) solid 1px;border-radius: 5px;padding:20px;">
             {% if comment.type == "comment" %}
-                {{comment.comment_email}} - <span style="color: rgb(204, 204, 204)">{{comment.creation}}</span> :
+                {{comment.comment_email}} <span style="color: rgb(204, 204, 204)">- {{comment.creation}}</span> :
                 <p>{{comment.content}}</p>
             {%endif%}
             {% if comment.type == "communication" %}
-                {{comment.reference_owner}} - <span style="color: rgb(204, 204, 204)">{{comment.creation}}</span> :
+                {{comment.reference_owner}} <span style="color: rgb(204, 204, 204)">- {{comment.creation}}</span> :
                 <p>{{comment.content}}</p>
             {%endif%}
         </div>
@@ -212,9 +212,15 @@
     
         <div id="comment_area">
             {% for comment in comments%}
-            <div style="margin-top: 20px">
-                {{comment.comment_email}} {{comment.creation}}:
-                <p>{{comment.content}}</p>
+            <div style="margin: 20px;border: rgb(163 163 163) solid 1px;border-radius: 5px;padding:20px;">
+                {% if comment.type == "comment" %}
+                    {{comment.comment_email}} <span style="color: rgb(204, 204, 204)">- {{comment.creation}}</span> :
+                    <p>{{comment.content}}</p>
+                {%endif%}
+                {% if comment.type == "communication" %}
+                    {{comment.reference_owner}} <span style="color: rgb(204, 204, 204)">- {{comment.creation}}</span> :
+                    <p>{{comment.content}}</p>
+                {%endif%}
             </div>
             {%endfor%}
         </div>
