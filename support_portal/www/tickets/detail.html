@@ -79,10 +79,10 @@
             {%else%}
                 <div class="col-1">
                     <svg class="icon icon-md" style="">
-                        {% if comment.sent_or_received == "recived" %}
+                        {% if comment.sent_or_received == "Received" %}
                         <use class="" href="#icon-mail"></use>
                         {%endif%}
-                        {% if comment.sent_or_received == "sent" %}
+                        {% if comment.sent_or_received == "Sent" %}
                         <use class="" href="#icon-notification"></use>
                         {%endif%}
                     </svg>
@@ -263,7 +263,7 @@
                 {%else%}
                     <div class="col-1">
                         <svg class="icon icon-md" style="">
-                            {% if comment.sent_or_received == "Recived" %}
+                            {% if comment.sent_or_received == "Received" %}
                             <use class="" href="#icon-mail"></use>
                             {%endif%}
                             {% if comment.sent_or_received == "Sent" %}
