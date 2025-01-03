@@ -5,9 +5,9 @@ from support_portal.services.get_customer_id import handler as get_customer_id
 def get_context(context):
 
     #frappe.clear_cache()
-        
+
     #frappe.website.render.clear_cache()
-    
+
     context.no_cache = 1
 
     query_params = frappe.request.args
@@ -15,30 +15,33 @@ def get_context(context):
     code = query_params.get("code")
 
     context.issue = get_issue(code)
-    
+
     context.products = frappe.db.get_list("Support product", fields = ["*"])
     context.types = frappe.db.get_list("Support type", fields = ["*"])
     context.priorities = frappe.db.get_list("Issue Priority", fields = ["*"])
     context.user = frappe.session.user
 
 
-    comments = frappe.db.get_list("Comment", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
+    comments = frappe.db.get_list("Comment", filters = { "reference_doctype": "Issue", "reference_name": context.issue}, fields = ["*"])
 
-    for key, comment in enumerate(comments):
-        comments[key].creation = format_datetime(comment.creation,format='short', locale='es_CO')
-        comments[key].type = "comment"
-
+    print('comments')
     print(comments)
 
-    communications = frappe.db.get_list("Communication", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
+    communications = frappe.db.get_list("Communication", filters = { "reference_doctype": "Issue", "reference_name": context.issue}, fields = ["*"])
+
+    print('communications')
+    print(communications)
+    
+    for key, comment in enumerate(comments):
+        comments[key].type = "comment"
 
     for key, communication in enumerate(communications):
-        communications[key].creation = format_datetime(communication.creation,format='short', locale='es_CO')
         communications[key].type = "communication"
-    
-    print(communications)
 
-    context.comments = sorted([*comments, *communications], key=lambda i: i['creation'], reverse=True)
+    context.comments = sorted([*comments, *communications], key=lambda i: i['creation'])
+
+    for key, com in enumerate(context.comments):
+        context.comments[key].creation = format_datetime(com.creation,format='short', locale='es_CO')
 
     print(context.comments)
 

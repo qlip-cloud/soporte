@@ -2,8 +2,6 @@ import frappe
 from support_portal.services.get_customer_id import handler as get_customer_id
 
 def get_context(context):
-    
-    print(context)
 
     #frappe.clear_cache()
         
