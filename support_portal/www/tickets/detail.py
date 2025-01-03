@@ -7,6 +7,7 @@ def get_context(context):
     #frappe.clear_cache()
         
     #frappe.website.render.clear_cache()
+
     context.no_cache = 1
 
     query_params = frappe.request.args
@@ -21,19 +22,19 @@ def get_context(context):
     context.user = frappe.session.user
 
 
-    comments = frappe.db.get_list("Comment", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
+    context.comments = frappe.db.get_list("Comment", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
 
-    for key, comment in enumerate(comments):
-        comments[key].creation = format_datetime(comment.creation,format='short', locale='es_CO')
-        comments[key].type = "comment"
+    for key, comment in enumerate(context.comments):
+        context.comments[key].creation = format_datetime(comment.creation,format='short', locale='es_CO')
+        context.comments[key].type = "comment"
 
-    communications = frappe.db.get_list("Communication", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
+    context.communications = frappe.db.get_list("Communication", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
 
-    for key, communication in enumerate(communications):
-        communications[key].creation = format_datetime(communication.creation,format='short', locale='es_CO')
-        communications[key].type = "communication"
+    for key, communication in enumerate(context.communications):
+        context.communications[key].creation = format_datetime(communication.creation,format='short', locale='es_CO')
+        context.communications[key].type = "communication"
     
-    context.comments = sorted([*comments, *communications], key=lambda i: i['creation'], reverse=True)
+    context.total = sorted([*context.comments, *context.communications], key=lambda i: i['creation'], reverse=True)
 
 
 @frappe.whitelist()
