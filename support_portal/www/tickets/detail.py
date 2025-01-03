@@ -3,14 +3,16 @@ from babel.dates import format_datetime
 from support_portal.services.get_customer_id import handler as get_customer_id
 
 def get_context(context):
+
     #frappe.clear_cache()
         
     #frappe.website.render.clear_cache()
+    context.no_cache = 1
+
     query_params = frappe.request.args
 
     code = query_params.get("code")
 
-    context.no_cache = 1
     context.issue = get_issue(code)
     
     context.products = frappe.db.get_list("Support product", fields = ["*"])
@@ -20,12 +22,13 @@ def get_context(context):
 
 
     comments = frappe.db.get_list("Comment", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
-    communications = frappe.db.get_list("Communication", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
 
     for key, comment in enumerate(comments):
         comments[key].creation = format_datetime(comment.creation,format='short', locale='es_CO')
         comments[key].type = "comment"
 
+    communications = frappe.db.get_list("Communication", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
+    
     for key, communication in enumerate(communications):
         communications[key].creation = format_datetime(communication.creation,format='short', locale='es_CO')
         communications[key].type = "communication"
