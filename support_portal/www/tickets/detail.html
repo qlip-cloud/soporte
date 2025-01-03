@@ -59,7 +59,7 @@
 
     <div id="comment_area">
         {% for comment in comments%}
-        <div style="margin-top: 20px">
+        <div style="margin-top: 20px;border-top: solid 1px;">
             {{comment.comment_email}} {{comment.creation}}:
             <p>{{comment.content}}</p>
         </div>
