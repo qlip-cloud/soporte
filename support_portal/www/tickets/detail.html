@@ -58,67 +58,68 @@
 
 
     <div id="comment_area">
-        
-        <div class="timeline-items">
-            {% for comment in comments%}
-                {% if comment.type == "comment" %}
-                    <div class="timeline-item" data-doctype="Comment" data-name="{{comment.name}}">
-                        <div class="timeline-badge">
-                            <svg class="icon icon-md" style="">
-                                <use class="" href="#icon-small-message"></use>
-                            </svg>
-                        </div>
-                        <div class="timeline-content frappe-card">
-                            <div class="timeline-message-box" data-communication-type="">  
-                                <span class="flex justify-between">   
-                                    <span class="text-color flex">         
-                                        <span> {{comment.comment_email}} 
-                                            <span class="text-muted margin-left">       
-                                                <span class="frappe-timestamp " >{{comment.creation}}</span>
-                                            </span>     
+        <div class="new-timeline">
+            <div class="timeline-items">
+                {% for comment in comments%}
+                    {% if comment.type == "comment" %}
+                        <div class="timeline-item" data-doctype="Comment" data-name="{{comment.name}}">
+                            <div class="timeline-badge">
+                                <svg class="icon icon-md" style="">
+                                    <use class="" href="#icon-small-message"></use>
+                                </svg>
+                            </div>
+                            <div class="timeline-content frappe-card">
+                                <div class="timeline-message-box" data-communication-type="">  
+                                    <span class="flex justify-between">   
+                                        <span class="text-color flex">         
+                                            <span> {{comment.comment_email}} 
+                                                <span class="text-muted margin-left">       
+                                                    <span class="frappe-timestamp " >{{comment.creation}}</span>
+                                                </span>     
+                                            </span>    
                                         </span>    
-                                    </span>    
-                                </span>  
-                                <div class="content">   
-                                    <p>{{comment.content}}</p>
-                                </div>   
+                                    </span>  
+                                    <div class="content">   
+                                        <p>{{comment.content}}</p>
+                                    </div>   
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {%endif%}
-                {% if comment.type == "communication" %}
-                    
-                    <div class="timeline-item" data-doctype="Communication" data-name="{{comment.name}}">
-                        <div class="timeline-badge">
-                            <svg class="icon icon-md" style="">
-                                {% if comment.sent_or_received == "recived" %}
-                                <use class="" href="#icon-mail"></use>
-                                {%endif%}
-                                {% if comment.sent_or_received == "sent" %}
-                                <use class="" href="#icon-notification"></use>
-                                {%endif%}
-                            </svg>
-                        </div>
-                        <div class="timeline-content frappe-card">
-                            <div class="timeline-message-box" data-communication-type="">  
-                                <span class="flex justify-between">   
-                                    <span class="text-color flex">         
-                                        <span> {{comment.reference_owner}} 
-                                            <span class="text-muted margin-left">       
-                                                <span class="frappe-timestamp " >{{comment.creation}}</span>
-                                            </span>     
+                    {%endif%}
+                    {% if comment.type == "communication" %}
+                        
+                        <div class="timeline-item" data-doctype="Communication" data-name="{{comment.name}}">
+                            <div class="timeline-badge">
+                                <svg class="icon icon-md" style="">
+                                    {% if comment.sent_or_received == "recived" %}
+                                    <use class="" href="#icon-mail"></use>
+                                    {%endif%}
+                                    {% if comment.sent_or_received == "sent" %}
+                                    <use class="" href="#icon-notification"></use>
+                                    {%endif%}
+                                </svg>
+                            </div>
+                            <div class="timeline-content frappe-card">
+                                <div class="timeline-message-box" data-communication-type="">  
+                                    <span class="flex justify-between">   
+                                        <span class="text-color flex">         
+                                            <span> {{comment.reference_owner}} 
+                                                <span class="text-muted margin-left">       
+                                                    <span class="frappe-timestamp " >{{comment.creation}}</span>
+                                                </span>     
+                                            </span>    
                                         </span>    
-                                    </span>    
-                                </span>  
-                                <div class="content">   
-                                    <p>{{comment.content}}</p>
-                                </div>   
+                                    </span>  
+                                    <div class="content">   
+                                        <p>{{comment.content}}</p>
+                                    </div>   
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {%endif%}
-            {%endfor%}
-        </div>
+                    {%endif%}
+                {%endfor%}
+            </div>    
+        </div>   
     </div>
     
     
@@ -260,67 +261,68 @@
     
     
         <div id="comment_area">
-        
-            <div class="timeline-items">
-                {% for comment in comments%}
-                    {% if comment.type == "comment" %}
-                        <div class="timeline-item" data-doctype="Comment" data-name="{{comment.name}}">
-                            <div class="timeline-badge">
-                                <svg class="icon icon-md" style="">
-                                    <use class="" href="#icon-small-message"></use>
-                                </svg>
-                            </div>
-                            <div class="timeline-content frappe-card">
-                                <div class="timeline-message-box" data-communication-type="">  
-                                    <span class="flex justify-between">   
-                                        <span class="text-color flex">         
-                                            <span> {{comment.comment_email}} 
-                                                <span class="text-muted margin-left">       
-                                                    <span class="frappe-timestamp " >{{comment.creation}}</span>
-                                                </span>     
+            <div class="new-timeline">
+                <div class="timeline-items">
+                    {% for comment in comments%}
+                        {% if comment.type == "comment" %}
+                            <div class="timeline-item" data-doctype="Comment" data-name="{{comment.name}}">
+                                <div class="timeline-badge">
+                                    <svg class="icon icon-md" style="">
+                                        <use class="" href="#icon-small-message"></use>
+                                    </svg>
+                                </div>
+                                <div class="timeline-content frappe-card">
+                                    <div class="timeline-message-box" data-communication-type="">  
+                                        <span class="flex justify-between">   
+                                            <span class="text-color flex">         
+                                                <span> {{comment.comment_email}} 
+                                                    <span class="text-muted margin-left">       
+                                                        <span class="frappe-timestamp " >{{comment.creation}}</span>
+                                                    </span>     
+                                                </span>    
                                             </span>    
-                                        </span>    
-                                    </span>  
-                                    <div class="content">   
-                                        <p>{{comment.content}}</p>
-                                    </div>   
+                                        </span>  
+                                        <div class="content">   
+                                            <p>{{comment.content}}</p>
+                                        </div>   
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {%endif%}
-                    {% if comment.type == "communication" %}
-                        
-                        <div class="timeline-item" data-doctype="Communication" data-name="{{comment.name}}">
-                            <div class="timeline-badge">
-                                <svg class="icon icon-md" style="">
-                                    {% if comment.sent_or_received == "recived" %}
-                                    <use class="" href="#icon-mail"></use>
-                                    {%endif%}
-                                    {% if comment.sent_or_received == "sent" %}
-                                    <use class="" href="#icon-notification"></use>
-                                    {%endif%}
-                                </svg>
-                            </div>
-                            <div class="timeline-content frappe-card">
-                                <div class="timeline-message-box" data-communication-type="">  
-                                    <span class="flex justify-between">   
-                                        <span class="text-color flex">         
-                                            <span> {{comment.reference_owner}} 
-                                                <span class="text-muted margin-left">       
-                                                    <span class="frappe-timestamp " >{{comment.creation}}</span>
-                                                </span>     
+                        {%endif%}
+                        {% if comment.type == "communication" %}
+                            
+                            <div class="timeline-item" data-doctype="Communication" data-name="{{comment.name}}">
+                                <div class="timeline-badge">
+                                    <svg class="icon icon-md" style="">
+                                        {% if comment.sent_or_received == "recived" %}
+                                        <use class="" href="#icon-mail"></use>
+                                        {%endif%}
+                                        {% if comment.sent_or_received == "sent" %}
+                                        <use class="" href="#icon-notification"></use>
+                                        {%endif%}
+                                    </svg>
+                                </div>
+                                <div class="timeline-content frappe-card">
+                                    <div class="timeline-message-box" data-communication-type="">  
+                                        <span class="flex justify-between">   
+                                            <span class="text-color flex">         
+                                                <span> {{comment.reference_owner}} 
+                                                    <span class="text-muted margin-left">       
+                                                        <span class="frappe-timestamp " >{{comment.creation}}</span>
+                                                    </span>     
+                                                </span>    
                                             </span>    
-                                        </span>    
-                                    </span>  
-                                    <div class="content">   
-                                        <p>{{comment.content}}</p>
-                                    </div>   
+                                        </span>  
+                                        <div class="content">   
+                                            <p>{{comment.content}}</p>
+                                        </div>   
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {%endif%}
-                {%endfor%}
-            </div>
+                        {%endif%}
+                    {%endfor%}
+                </div>    
+            </div>   
         </div>
         
         <div class="modal fade" id="upload_picture" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1051 !important;">
