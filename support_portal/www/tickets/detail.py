@@ -27,8 +27,8 @@ def get_context(context):
         comments[key].type = "comment"
 
     for key, communication in enumerate(communications):
-        communication[key].creation = format_datetime(communication.creation,format='short', locale='es_CO')
-        communication[key].type = "communication"
+        communications[key].creation = format_datetime(communication.creation,format='short', locale='es_CO')
+        communications[key].type = "communication"
     
     context.comments = sorted(comments + communications, key=lambda i: i['creation'], reverse=True)
 
