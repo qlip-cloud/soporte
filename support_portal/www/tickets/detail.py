@@ -28,7 +28,7 @@ def get_context(context):
     for key, communications in enumerate(communications):
         communications[key].creation = format_datetime(communications.creation,format='short', locale='es_CO')
     
-    context.comments = sorted((comments + communications).items(), key=lambda i: i.creation, reverse=True)
+    context.comments = sorted(comments + communications, key=lambda i: i['creation'], reverse=True)
 
 
 @frappe.whitelist()
