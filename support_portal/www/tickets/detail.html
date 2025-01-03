@@ -59,13 +59,13 @@
 
     <div id="comment_area">
         {% for comment in comments%}
-        <div style="margin-top: 20px;border-top: solid 1px;">
+        <div style="margin: 20px;border: rgb(204, 204, 204) 1px;border-radius: 5px;padding:20px;">
             {% if comment.type == "comment" %}
-                {{comment.comment_email}} {{comment.creation}}:
+                {{comment.comment_email}} - <span style="color: rgb(204, 204, 204)">{{comment.creation}}</span> :
                 <p>{{comment.content}}</p>
             {%endif%}
             {% if comment.type == "communication" %}
-                {{comment.reference_owner}} {{comment.creation}}:
+                {{comment.reference_owner}} - <span style="color: rgb(204, 204, 204)">{{comment.creation}}</span> :
                 <p>{{comment.content}}</p>
             {%endif%}
         </div>
