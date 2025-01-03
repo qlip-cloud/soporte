@@ -66,8 +66,7 @@
                 </svg> {{comment.comment_email}} 
                 <span style="color: rgb(204, 204, 204);font-size: .875rem;">{{comment.creation}}</span>
                 <p>{{comment.content}}</p>
-            {%endif%}
-            {% if comment.type == "communication" %}
+            {%else%}
                 <svg class="icon icon-md" style="">
                     {% if comment.sent_or_received == "recived" %}
                     <use class="icon icon-xs" href="#icon-mail"></use>
@@ -224,27 +223,25 @@
         <div id="comment_area">
             {% for comment in comments%}
             <div style="margin: 20px;border: rgb(163 163 163) solid 1px;border-radius: 5px;padding:20px;">
-                <svg class="icon icon-xs" style="">
-                    <use class="" href="#icon-small-message"></use>
-                </svg> {{comment.comment_email}} <span style="color: rgb(204, 204, 204)">- {{comment.creation}}</span>
-                <p>{{comment.content}}</p>    
+                {% if comment.type == "comment" %}
+                    <svg class="icon icon-xs" style="">
+                        <use class="" href="#icon-small-message"></use>
+                    </svg> {{comment.comment_email}} 
+                    <span style="color: rgb(204, 204, 204);font-size: .875rem;">{{comment.creation}}</span>
+                    <p>{{comment.content}}</p>
+                {%else%}
+                    <svg class="icon icon-md" style="">
+                        {% if comment.sent_or_received == "recived" %}
+                        <use class="icon icon-xs" href="#icon-mail"></use>
+                        {%endif%}
+                        {% if comment.sent_or_received == "sent" %}
+                        <use class="icon icon-xs" href="#icon-notification"></use>
+                        {%endif%}
+                    </svg>{{comment.reference_owner}} 
+                    <span style="color: rgb(204, 204, 204);font-size: .875rem;">{{comment.creation}}</span>
+                    <p>{{comment.content}}</p>
+                {%endif%}
             </div>
-            {%endfor%}
-            {% for communication in communications%}
-            <div style="margin: 20px;border: rgb(163 163 163) solid 1px;border-radius: 5px;padding:20px;">
-                <svg class="icon icon-md" style="">
-                    {% if comment.sent_or_received == "recived" %}
-                    <use class="icon icon-xs" href="#icon-mail"></use>
-                    {%endif%}
-                    {% if comment.sent_or_received == "sent" %}
-                    <use class="icon icon-xs" href="#icon-notification"></use>
-                    {%endif%}
-                </svg>{{comment.reference_owner}} <span style="color: rgb(204, 204, 204)">- {{comment.creation}}</span>
-                <p>{{comment.content}}</p>
-            </div>
-            {%endfor%}
-            {% for total in totals %}
-                {{total}}
             {%endfor%}
         </div>
         
