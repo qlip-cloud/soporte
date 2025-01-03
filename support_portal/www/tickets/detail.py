@@ -22,14 +22,14 @@ def get_context(context):
     context.user = frappe.session.user
 
 
-    comments = frappe.db.get_list("Comment", filters = { "reference_doctype": "Issue", "reference_name": context.issue}, fields = ["*"])
+    comments = frappe.db.get_list("Comment", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
 
-    print('comments')
+    print('comments: ' + code)
     print(comments)
 
-    communications = frappe.db.get_list("Communication", filters = { "reference_doctype": "Issue", "reference_name": context.issue}, fields = ["*"])
+    communications = frappe.db.get_list("Communication", filters = { "reference_doctype": "Issue", "reference_name": code}, fields = ["*"])
 
-    print('communications')
+    print('communications: ' + code)
     print(communications)
     
     for key, comment in enumerate(comments):
@@ -43,6 +43,7 @@ def get_context(context):
     for key, com in enumerate(context.comments):
         context.comments[key].creation = format_datetime(com.creation,format='short', locale='es_CO')
 
+    print('context.comments' + code)
     print(context.comments)
 
 
