@@ -13,8 +13,8 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="flex col page-actions justify-content-start">
-                    <a class="btn btn-primary btn-sm primary-action active" href="/tickets/">Todos</a>
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/mine">Míos</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/">Míos</a>
+                    <a class="btn btn-primary btn-sm primary-action active" href="/tickets/all">Todos</a>
                 </div>
             </div>
             <div class="col-sm-9">
@@ -28,11 +28,11 @@
             <div class="col-sm-12">
         
                 <table class="table" style="margin-top: 20px;">
-                    <tr><td>Codigo</td><td>Asunto</td><td>Estado</td><td>Prioridad</td><td>Fecha</td><td>Creador</td></tr>
+                    <tr><td>Codigo</td><td>Asunto</td><td>Estado</td><td>Prioridad</td><td>Fecha Creación</td><td>Fecha Modificación</td><td>Creador</td></tr>
                     <tbody>
                         {% for issue in issues %}
                         <tr>
-                            <td><a href="/tickets/detail?code={{issue.name}}">{{issue.name}}</a></td><td>{{issue.subject}}</td><td>{{issue.status}}</td><td>{{issue.priority}}</td><td>{{issue.creation}}</td><td>{{issue.raised_by}}</td>
+                            <td><a href="/tickets/detail?code={{issue.name}}">{{issue.name}}</a></td><td>{{issue.subject}}</td><td>{{issue.status}}</td><td>{{issue.priority}}</td><td>{{issue.creation}}</td><td>{{issue.modified}}</td><td>{{issue.raised_by}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
