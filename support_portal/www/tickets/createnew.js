@@ -47,12 +47,12 @@ function update(id_control) {
 
         callback = (data) => {
 
-            window.location.href = "/tickets/?customer=" + $("#customer").val()
+            window.location.href = "/tickets/"
         }
 
         send_petition_upload("", "", formData, callback, url)
     } else {
-        window.location.href = "/tickets/?customer=" + $("#customer").val()
+        window.location.href = "/tickets/"
     }
 }
 
