@@ -8,8 +8,7 @@ $(document).ready(function () {
             priority: $("#priority").val(),
             tipo: $("#tipo").val(),
             description: $("#description").val(),
-            comment: $("#comment").val(),
-            customer: $("#customer").val()
+            comment: $("#comment").val()
         }
         method = "support_portal.use_case.tickets.save.handler"
         callback = (data) => {
