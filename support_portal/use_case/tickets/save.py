@@ -3,7 +3,7 @@ from  frappe.desk.form.utils import add_comment
 
 
 @frappe.whitelist()
-def handler(subject, producto ,priority, tipo, description, comment, customer):
+def handler(subject, producto ,priority, tipo, description, comment):
 
    doc = frappe.new_doc('Issue')
    doc.subject = subject
@@ -12,7 +12,6 @@ def handler(subject, producto ,priority, tipo, description, comment, customer):
    doc.producto = producto
    doc.description = description
    doc.via_customer_portal = True
-   doc.customer = customer
 
    # band section
    contact_doc_name = frappe.db.get_value('Contact', filters={'email_id': frappe.session.user}, fieldname=['name'])

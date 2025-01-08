@@ -50,7 +50,7 @@ def handler(subject, producto ,priority, tipo):
 
 def get_issue(code, customer):
 
-    result = frappe.db.get_list("Issue", filters = {"name": code, "customer": get_customer_id[0]['name']}, fields = ["*"])
+    result = frappe.db.get_list("Issue", filters = {"name": code, "customer": get_customer_id[0]["name"]}, fields = ["*"])
     
     if result:
 

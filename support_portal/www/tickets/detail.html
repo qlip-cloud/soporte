@@ -17,9 +17,9 @@
                 <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
             </div>    
             {% if page %}
-                <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/all/?customer={{customer}}">Atras</a>
+                <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/all/">Atras</a>
             {% else %}
-                <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/?customer={{customer}}">Atras</a>
+                <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/">Atras</a>
             {% endif %}
         </div>             
     </div>
@@ -122,9 +122,9 @@
                     <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
                 </div>    
                 {% if page %}
-                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/all/?customer={{customer}}">Atras</a>
+                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/all/">Atras</a>
                 {% else %}
-                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/?customer={{customer}}">Atras</a>
+                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/">Atras</a>
                 {% endif %}
                 <button style="margin-right: 10px;" data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
                     Cerrar ticket
@@ -149,7 +149,6 @@
                     <td>
                         <div class="control-input-wrapper">                        
                             <div class="control-input floating-label  flex align-center">
-                                <input type="hidden" name="" id = "customer" value = "{{customer}}">
                                 <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" >
                                     {% for product in products%}
                                         <option value="{{product.name}}" {{ '' if issue.producto != product.name else "Selected"}}>{{product.name}}</option>
