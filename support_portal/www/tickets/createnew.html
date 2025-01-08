@@ -13,7 +13,7 @@
         </div>           
     </div>
     <div class="flex col page-actions justify-content-end">
-    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets">Atras</a>
+    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/?customer={{customer}}">Atras</a>
     </div>
     
 
@@ -34,6 +34,7 @@
                 <td>
                     <div class="control-input-wrapper">                        
                         <div class="control-input floating-label  flex align-center">
+                            <input type="hidden" name="" id = "customer" value = "{{customer}}">
                             <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue"  >
                                 <option value=""></option>
                                 {% for product in products%}
