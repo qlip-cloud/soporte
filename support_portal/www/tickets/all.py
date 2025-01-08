@@ -23,7 +23,8 @@ def get_context(context):
     context.issues = frappe.db.get_list("Issue", filters = {"customer": context.customer}, order_by='creation desc', fields = ["*"])
 
     for key, issue in enumerate(context.issues):
-        context.issues[key]._assign = json.loads(issue._assign)[0]
+        print(json.loads(issue._assign)[0])
+        context.issues[key].assign = json.loads(issue._assign)[0] if issue._assign else ''
         context.issues[key].creation = format_datetime(issue.creation,format='short', locale='es_CO')
         context.issues[key].modified = format_datetime(issue.modified,format='short', locale='es_CO')
 
