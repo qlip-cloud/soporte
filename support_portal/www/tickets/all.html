@@ -1,5 +1,9 @@
 {% extends "frappe/templates/web.html" %}
 
+{% block head_include %}
+    <link rel="stylesheet" href="/assets/support_portal/css/bootstrap-table.min.css">
+{% endblock %}
+
 <div>
      {% block page_content %}
     
@@ -27,14 +31,24 @@
         <div class="row">
             <div class="col-sm-12">
         
-                <table class="table" style="margin-top: 20px;">
-                    <tr><td>Codigo</td><td>Asunto</td><td>Estado</td><td>Prioridad</td><td>Fecha Creación</td><td>Fecha Modificación</td><td>Creador</td></tr>
-                    <tbody>
-                        {% for issue in issues %}
+                <table class="table mt-5" data-toggle="table">
+                    <thead>
                         <tr>
-                            <td><a href="/tickets/detail?code={{issue.name}}">{{issue.name}}</a></td><td>{{issue.subject}}</td><td>{{issue.status}}</td><td>{{issue.priority}}</td><td>{{issue.creation}}</td><td>{{issue.modified}}</td><td>{{issue.raised_by}}</td>
-                        </tr>
-                        {% endfor %}
+                            <th data-filter-control=true>Codigo</th>
+                            <th data-filter-control="input">Asunto</th>
+                            <th data-filter-control="select">Estado</th>
+                            <th>Prioridad</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Modificación</th>
+                            <th>Creador</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for issue in issues %}
+                    <tr>
+                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}">{{issue.name}}</a></td><td>{{issue.subject}}</td><td>{{issue.status}}</td><td>{{issue.priority}}</td><td>{{issue.creation}}</td><td>{{issue.modified}}</td><td>{{issue.raised_by}}</td>
+                    </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
         
@@ -46,3 +60,8 @@
     
      {% endblock %}
 </div>
+
+
+{% block script %}
+    <script src="/assets/support_portal/js/bootstrap-table.min.js"></script>
+{% endblock %}
