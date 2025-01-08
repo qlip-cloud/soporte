@@ -14,6 +14,7 @@ def get_context(context):
 
     code = query_params.get("code")
     context.customer = query_params.get("customer")
+    context.page = context.customer = query_params.get("page")
 
     context.issue = get_issue(code, context.customer)
 
