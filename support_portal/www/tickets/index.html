@@ -31,16 +31,16 @@
         <div class="row">
             <div class="col-sm-12">
         
-                <table class="table mt-5" data-toggle="table" data-pagination="true" data-search="true" data-locale="es-ES" {% if issues | length > 0 %} data-filter-control="true" {% endif %}>
+                <table class="table mt-5" data-toggle="table" data-page-list="[10, 25, 50, 100, 500, All]" data-pagination="true" data-search="true" data-locale="es-ES" {% if issues | length > 0 %} data-filter-control="true" {% endif %}>
                     <thead>
                         <tr>
-                            <th data-field="codigo" data-filter-control="input">Codigo</th>
-                            <th data-field="asunto" data-filter-control="input">Asunto</th>
-                            <th data-field="estado" data-filter-control="select">Estado</th>
-                            <th data-field="prioridad" data-filter-control="select">Prioridad</th>
-                            <th data-field="creacion" data-filter-control="input">Fecha Creación</th>
-                            <th data-field="modificacion" data-filter-control="input">Fecha Modificación</th>
-                            <th data-field="creador" data-filter-control="input">Creador</th>
+                            <th filterControlPlaceholder="Filtrar" data-field="codigo" data-filter-control="input">Codigo</th>
+                            <th filterControlPlaceholder="Filtrar" data-field="asunto" data-filter-control="input">Asunto</th>
+                            <th filterControlPlaceholder="Filtrar" data-field="estado" data-filter-control="select">Estado</th>
+                            <th filterControlPlaceholder="Filtrar" data-field="prioridad" data-filter-control="select">Prioridad</th>
+                            <th filterControlPlaceholder="Filtrar" data-field="creacion" data-filter-control="input">Fecha Creación</th>
+                            <th filterControlPlaceholder="Filtrar" data-field="modificacion" data-filter-control="input">Fecha Modificación</th>
+                            <th filterControlPlaceholder="Filtrar" data-field="creador" data-filter-control="input">Creador</th>
                         </tr>
                     </thead>
                     <tbody>
