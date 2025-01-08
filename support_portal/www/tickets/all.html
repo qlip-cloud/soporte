@@ -58,7 +58,7 @@
                     <tbody>
                     {% for issue in issues %}
                     <tr>
-                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer={{customer}}">{{issue.name}}</a></td>
+                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}">{{issue.name}}</a></td>
                         <td>{{issue.subject}}</td>
                         <td>{{issue.status}}</td>
                         <td>{{issue.priority}}</td>
