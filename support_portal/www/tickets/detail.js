@@ -56,7 +56,7 @@ $(document).ready(function() {
         }
         method = "support_portal.use_case.tickets.update.handler"
         callback = (data) => {
-            window.location.href = "/tickets/"
+            window.location.href = "/tickets";
         }
         send_petition(payload, method, callback)
     })
@@ -68,7 +68,7 @@ $(document).ready(function() {
         }
         method = "support_portal.use_case.tickets.closeticket.handler"
         callback = (data) => {
-            window.location.href = "/tickets/"
+            window.location.href = "/tickets";
         }
         send_petition(payload, method, callback)
     })
