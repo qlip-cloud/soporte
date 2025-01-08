@@ -2,8 +2,6 @@ import frappe
 
 def after_insert(timesheet, method):
     
-    print("timesheet " + method)
-    
     searched = []
 
     for time_detail in timesheet.time_logs:

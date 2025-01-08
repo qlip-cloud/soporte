@@ -4,7 +4,8 @@ def handler():
     email = frappe.session.user
 
     sql = """SELECT 
-                customer.name as name
+                customer.name as name,
+                customer.customer_name as customer_name
             FROM
                 tabContact as contact
             inner join
@@ -18,7 +19,6 @@ def handler():
     result =  frappe.db.sql(sql, as_dict=1)
 
     if result:
-
-        return result[0]["name"]
+        return result
     
     frappe.throw("Usuario no configurado")

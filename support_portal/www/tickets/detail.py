@@ -13,8 +13,9 @@ def get_context(context):
     query_params = frappe.request.args
 
     code = query_params.get("code")
+    context.customer = query_params.get("customer")
 
-    context.issue = get_issue(code)
+    context.issue = get_issue(code, context.customer)
 
     context.products = frappe.db.get_list("Support product", fields = ["*"])
     context.types = frappe.db.get_list("Support type", fields = ["*"])
@@ -47,9 +48,9 @@ def handler(subject, producto ,priority, tipo):
     doc.save()
     frappe.db.commit()
 
-def get_issue(code):
+def get_issue(code, customer):
 
-    result = frappe.db.get_list("Issue", filters = {"name": code, "customer": get_customer_id()}, fields = ["*"])
+    result = frappe.db.get_list("Issue", filters = {"name": code, "customer": customer}, fields = ["*"])
     
     if result:
 
