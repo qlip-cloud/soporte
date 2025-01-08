@@ -34,14 +34,14 @@
                 <table class="table mt-5" data-toggle="table">
                     <thead>
                         <tr>
-                            <th data-filter-control=true>Codigo</th>
-                            <th data-filter-control="input">Asunto</th>
-                            <th data-filter-control="select">Estado</th>
-                            <th>Prioridad</th>
-                            <th>Fecha Creación</th>
-                            <th>Fecha Modificación</th>
-                            <th>Creador</th>
-                    </tr>
+                            <th data-field="codigo" data-filter-control="input">Codigo</th>
+                            <th data-field="asunto" data-filter-control="input">Asunto</th>
+                            <th data-field="estado" data-filter-control="select">Estado</th>
+                            <th data-field="prioridad" data-filter-control="select">Prioridad</th>
+                            <th data-field="creacion" data-filter-control="input">Fecha Creación</th>
+                            <th data-field="modificacion" data-filter-control="input">Fecha Modificación</th>
+                            <th data-field="creador" data-filter-control="input">Creador</th>
+                        </tr>
                     </thead>
                     <tbody>
                     {% for issue in issues %}
@@ -65,4 +65,5 @@
 
 {% block script %}
     <script src="/assets/support_portal/js/bootstrap-table.min.js"></script>
+    <script src="/assets/support_portal/js/bootstrap-table-filter-control.min.js"></script>
 {% endblock %}
