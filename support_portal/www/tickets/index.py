@@ -10,6 +10,9 @@ def get_context(context):
     
     context.no_cache = 1
     context.issues = frappe.db.get_list("Issue", filters = {"customer": get_customer_id(), "raised_by":frappe.session.user}, order_by='creation desc', fields = ["*"])
+    context.status = frappe.db.get_list("Issue", filters = {"customer": get_customer_id(), "raised_by":frappe.session.user}, group_by='status', fields = ["status"])
+
+    context.priorities = frappe.db.get_list("Issue Priority", fields = ["*"])
 
     for key, issue in enumerate(context.issues):
         context.issues[key].creation = format_datetime(issue.creation,format='short', locale='es_CO')
