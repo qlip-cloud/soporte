@@ -24,7 +24,7 @@ def get_context(context):
 
 
     for key, issue in enumerate(context.issues):
-        context.issues[key].assign =  json.loads(issue._assign)[0]
+        context.issues[key]._assign =  json.loads(issue._assign)[0]
         context.issues[key].creation = format_datetime(issue.creation,format='short', locale='es_CO')
         context.issues[key].modified = format_datetime(issue.modified,format='short', locale='es_CO')
 
