@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-sm-12">
         
-                <table class="table mt-5" data-toggle="table" data-filter-control="true">
+                <table class="table mt-5" data-toggle="table" data-locale="es-CO" {% if issues | length > 0 %} data-filter-control="true" {% endif %}>
                     <thead>
                         <tr>
                             <th data-field="codigo" data-filter-control="input">Codigo</th>
@@ -65,4 +65,5 @@
 {% block script %}
     <script src="/assets/support_portal/js/bootstrap-table.min.js"></script>
     <script src="/assets/support_portal/js/bootstrap-table-filter-control.min.js"></script>
+    <script src="/assets/support_portal/js/bootstrap-table-es-ES.js"></script>
 {% endblock %}
