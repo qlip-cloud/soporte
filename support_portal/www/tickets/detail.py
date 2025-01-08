@@ -14,7 +14,6 @@ def get_context(context):
 
     code = query_params.get("code")
     context.customer = query_params.get("customer")
-    context.page = query_params.get("page")
 
     context.issue = get_issue(code, context.customer)
 
@@ -51,7 +50,7 @@ def handler(subject, producto ,priority, tipo):
 
 def get_issue(code, customer):
 
-    result = frappe.db.get_list("Issue", filters = {"name": code, "customer": get_customer_id[0]["name"]}, fields = ["*"])
+    result = frappe.db.get_list("Issue", filters = {"name": code, "customer": get_customer_id[0]['name']}, fields = ["*"])
     
     if result:
 
