@@ -24,9 +24,9 @@
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-center">
                     {% if customers | length > 0 %}
-                        <select name="customer_value" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" id="customer" onchange="location = '/tickets/all/?customer=' + this.value;">
-                            {% for customer in customers%}
-                                <option value="{{customer.name}}" {{ '' if customer != customer.name else "Selected"}}>{{customer.customer_name}}</option>
+                        <select name="customer_value" id="customer_value" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" onchange="location = '/tickets/all/?customer=' + this.value;">
+                            {% for cus in customers%}
+                                <option value="{{cus.name}}" {{ "" if customer != cus.name else "selected"}}>{{cus.customer_name}}</option>
                             {% endfor %}
                         </select>
                     {% endif %}

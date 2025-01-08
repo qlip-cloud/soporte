@@ -12,8 +12,6 @@ def get_context(context):
     context.no_cache = 1
 
     query_params = frappe.request.args
-
-    print(query_params)
     
     context.customers = get_customer_id()
 
