@@ -15,7 +15,7 @@ def get_context(context):
 
     context.customers = get_customer_id()
 
-    if query_params:
+    if query_params.get("customer"):
         context.customer = query_params.get("customer")
     else:
         context.customer = context.customers[0]['name']
