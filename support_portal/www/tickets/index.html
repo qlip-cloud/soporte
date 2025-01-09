@@ -6,7 +6,9 @@
 
 <div>
      {% block page_content %}
-    
+
+        {% set customer_value = none %}
+
         <div class="row">
             <div class="col-sm-12">
                 <h1>Tickets</h1>
@@ -17,8 +19,8 @@
         <div class="row mt-5">
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-start">
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/?customer=" + {{customer_value}}>Míos</a>
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/all/?customer=" + {{customer_value}}>Todos</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/?customer={{customer_value}}">Míos</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/all/?customer={{customer_value}}">Todos</a>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -29,7 +31,7 @@
                             {% for cus in customers%}
                                 <option value="{{cus.name}}" {{ '' if customer != cus.name else "selected"}}>{{cus.customer_name}}</option>
                                 {% if customer == cus.name %}
-                                    {% set customer_value =  cus.name %}
+                                    {% set customer_value = cus.name %}
                                 {% endif %}
                             {% endfor %}
                         </select>
@@ -39,7 +41,7 @@
             
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-end">
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew/?customer=" + {{customer_value}}>+ New</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew/?customer={{customer_value}}">+ New</a>
                 </div>
             </div>
         </div>
@@ -62,7 +64,7 @@
                     <tbody>
                     {% for issue in issues %}
                     <tr>
-                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer=" + {{customer_value}}>{{issue.name}}</a></td>
+                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer={{customer_value}}">{{issue.name}}</a></td>
                         <td>{{issue.subject}}</td>
                         <td>{{issue.status}}</td>
                         <td>{{issue.priority}}</td>
