@@ -19,15 +19,15 @@
         <div class="row mt-5">
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-start">
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/?customer={{customer_value}}">Míos</a>
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/all/?customer={{customer_value}}">Todos</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/?customer={{customer}}">Míos</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/all/?customer={{customer}}">Todos</a>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-center">
                     {% if customers | length > 0 %}
                         <input type="hidden" value="{{customer}}"/>
-                        <select id="custom"  autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" onchange="location = '/tickets/?customer=' + this.value;">
+                        <select id="custom"  autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" onchange="location = '/tickets/?customer=' + encodeURIComponent(this.value);">
                             
                             {% for cus in customers%}
                                 <option value="{{cus.name}}" {{ '' if customer != cus.name else "selected"}}>{{cus.customer_name}}</option>
@@ -42,7 +42,7 @@
             
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-end">
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew/?customer={{customer_value}}">+ New</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew/?customer={{customer}}">+ New</a>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
                     <tbody>
                     {% for issue in issues %}
                     <tr>
-                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer={{customer_value}}">{{issue.name}}</a></td>
+                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer={{customer}}">{{issue.name}}</a></td>
                         <td>{{issue.subject}}</td>
                         <td>{{issue.status}}</td>
                         <td>{{issue.priority}}</td>
