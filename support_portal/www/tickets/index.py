@@ -2,6 +2,7 @@ import json
 import frappe
 from support_portal.services.get_customer_id import handler as get_customer_id
 from babel.dates import format_datetime
+import urllib.parse
 
 def get_context(context):
     
@@ -16,9 +17,9 @@ def get_context(context):
     context.customers = get_customer_id()
 
     if query_params.get("customer"):
-        context.customer = query_params.get("customer")
+        context.customer = urllib.parse.quote(query_params.get("customer"))
     else:
-        context.customer = context.customers[0]['name']
+        context.customer = urllib.parse.quote(context.customers[0]['name'])
 
     context.issues = frappe.db.get_list("Issue", filters = {"customer": context.customer, "raised_by":frappe.session.user}, order_by='creation desc', fields = ["*"])
 
