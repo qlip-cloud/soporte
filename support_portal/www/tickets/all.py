@@ -24,14 +24,14 @@ def get_context(context):
     context.issues = frappe.db.get_list("Issue", filters = {"customer": customer}, order_by='creation desc', fields = ["*"])
 
     for key, issue in enumerate(context.issues):
-        
+
         assignments = frappe.db.get_list("ToDo", filters = dict(reference_type = 'Issue', reference_name = issue.name, status = ('!=', 'Cancelled')), fields = ['owner', 'name'])
         
         assignments_list = []
         for assign in assignments:
            assignments_list.append(frappe.db.get_value('User', {'email': assign.owner}, ['full_name']))
 
-        context.issues[key].assign = assignments_list.join(', ') if assignments_list else ''
+        context.issues[key].assign = ', '.join(assignments_list) if assignments_list else ''
         context.issues[key].creation = format_datetime(issue.creation,format='short', locale='es_CO')
         context.issues[key].modified = format_datetime(issue.modified,format='short', locale='es_CO')
 
