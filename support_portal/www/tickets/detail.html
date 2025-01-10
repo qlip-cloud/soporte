@@ -16,7 +16,7 @@
             <div class="flex col page-actions justify-content-end">
                 <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
             </div>    
-                {% if source_page == all %}
+                {% if source_page == 'all' %}
                     <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/all/?customer={{customer}}">Atras</a>
                 {% else %}
                     <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/?customer={{customer}}">Atras</a>
@@ -123,7 +123,7 @@
                 <div class="flex col page-actions justify-content-end">
                     <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
                 </div>    
-                {% if source_page == all %}
+                {% if source_page == 'all' %}
                     <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/all/?customer={{customer}}">Atras</a>
                 {% else %}
                     <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/?customer={{customer}}">Atras</a>
