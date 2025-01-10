@@ -56,7 +56,11 @@ $(document).ready(function() {
         }
         method = "support_portal.use_case.tickets.update.handler"
         callback = (data) => {
-            window.location.href = "/tickets";
+            if($("#source_page").val() == 'all'){
+                window.location.href = "/tickets/all/?customer=" + $("#customer").val();
+            }else{
+                window.location.href = "/tickets/?customer=" + $("#customer").val();
+            }
         }
         send_petition(payload, method, callback)
     })
@@ -68,7 +72,12 @@ $(document).ready(function() {
         }
         method = "support_portal.use_case.tickets.closeticket.handler"
         callback = (data) => {
-            window.location.href = "/tickets";
+            if($("#source_page").val() == 'all'){
+                window.location.href = "/tickets/all/?customer=" + $("#customer").val();
+            }else{
+                window.location.href = "/tickets/?customer=" + $("#customer").val();
+            }
+            
         }
         send_petition(payload, method, callback)
     })

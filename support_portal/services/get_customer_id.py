@@ -5,7 +5,8 @@ def handler():
 
     sql = """SELECT 
                 customer.name as name,
-                customer.customer_name as customer_name
+                customer.customer_name as customer_name,
+                customer.tax_id as tax_id
             FROM
                 tabContact as contact
             inner join
