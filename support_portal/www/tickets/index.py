@@ -19,13 +19,20 @@ def get_context(context):
     if query_params.get("customer"):
         context.customer = query_params.get("customer")
     else:
-        context.customer = context.customers[0]['name']
+        context.customer = context.customers[0]['tax_id']
 
-    context.issues = frappe.db.get_list("Issue", filters = {"customer": context.customer, "raised_by":frappe.session.user}, order_by='creation desc', fields = ["*"])
-
+    customer = frappe.db.get_value('Customer', {'tax_id': context.customer}, ['name'])
+    context.issues = frappe.db.get_list("Issue", filters = {"customer": customer, "raised_by":frappe.session.user}, order_by='creation desc', fields = ["*"])
 
     for key, issue in enumerate(context.issues):
-        context.issues[key].assign = json.loads(issue._assign)[0] if issue._assign else ''
+
+        assignments = frappe.db.get_list("ToDo", filters = dict(reference_type = 'Issue', reference_name = issue.name, status = ('!=', 'Cancelled')), fields = ['owner', 'name'])
+        
+        assignments_list = []
+        for assign in assignments:
+           assignments_list.append(frappe.db.get_value('User', {'email': assign.owner}, ['full_name']))
+
+        context.issues[key].assign = assignments_list.join(', ') if assignments_list else ''
         context.issues[key].creation = format_datetime(issue.creation,format='short', locale='es_CO')
         context.issues[key].modified = format_datetime(issue.modified,format='short', locale='es_CO')
 

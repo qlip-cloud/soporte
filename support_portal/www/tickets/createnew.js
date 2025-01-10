@@ -8,7 +8,8 @@ $(document).ready(function () {
             priority: $("#priority").val(),
             tipo: $("#tipo").val(),
             description: $("#description").val(),
-            comment: $("#comment").val()
+            comment: $("#comment").val(),
+            customer: $("#customer").val()
         }
         method = "support_portal.use_case.tickets.save.handler"
         callback = (data) => {
@@ -46,12 +47,20 @@ function update(id_control) {
 
         callback = (data) => {
 
-            window.location.href = "/tickets/"
+            if($("#source_page").val() == 'all'){
+                window.location.href = "/tickets/all/?customer=" + $("#customer").val();
+            }else{
+                window.location.href = "/tickets/?customer=" + $("#customer").val();
+            }
         }
 
         send_petition_upload("", "", formData, callback, url)
     } else {
-        window.location.href = "/tickets/"
+        if($("#source_page").val() == 'all'){
+            window.location.href = "/tickets/all/?customer=" + $("#customer").val();
+        }else{
+            window.location.href = "/tickets/?customer=" + $("#customer").val();
+        }
     }
 }
 

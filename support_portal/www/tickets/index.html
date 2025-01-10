@@ -7,8 +7,6 @@
 <div>
      {% block page_content %}
 
-        {% set customer_value = none %}
-
         <div class="row">
             <div class="col-sm-12">
                 <h1>Tickets</h1>
@@ -19,21 +17,17 @@
         <div class="row mt-5">
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-start">
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/?customer={{customer|safe}}">Míos</a>
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/all/?customer={{customer|safe}}">Todos</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/?customer={{customer}}">Míos</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/all/?customer={{customer}}">Todos</a>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-center">
                     {% if customers | length > 0 %}
-                        <input type="hidden" value="{{customer}}"/>
                         <select id="custom"  autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" onchange="location = '/tickets/?customer=' + this.value;">
                             
                             {% for cus in customers%}
-                                <option value="{{cus.name}}" {{ '' if customer != cus.name else "selected"}}>{{cus.customer_name}}</option>
-                                {% if customer == cus.name %}
-                                    {% set customer_value = cus.name %}
-                                {% endif %}
+                                <option value="{{cus.tax_id}}" {{ '' if customer != cus.tax_id else "selected"}}>{{cus.customer_name}}</option>
                             {% endfor %}
                         </select>
                     {% endif %}
@@ -42,7 +36,7 @@
             
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-end">
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew/?customer={{customer|safe}}">+ New</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew/?customer={{customer}}">+ New</a>
                 </div>
             </div>
         </div>
@@ -65,7 +59,7 @@
                     <tbody>
                     {% for issue in issues %}
                     <tr>
-                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer={{customer|safe}}">{{issue.name}}</a></td>
+                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer={{customer}}">{{issue.name}}</a></td>
                         <td>{{issue.subject}}</td>
                         <td>{{issue.status}}</td>
                         <td>{{issue.priority}}</td>
