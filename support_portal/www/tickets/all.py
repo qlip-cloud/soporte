@@ -3,9 +3,8 @@ import frappe
 from support_portal.services.get_customer_id import handler as get_customer_id
 from babel.dates import format_datetime
 
-
 def get_context(context):
-    
+
     #frappe.clear_cache()
         
     #frappe.website.render.clear_cache()
@@ -13,7 +12,7 @@ def get_context(context):
     context.no_cache = 1
 
     query_params = frappe.request.args
-
+    
     context.customers = get_customer_id()
 
     if query_params.get("customer"):
@@ -22,14 +21,13 @@ def get_context(context):
         context.customer = context.customers[0]['tax_id']
 
     customer = frappe.db.get_value('Customer', {'tax_id': context.customer}, ['name'])
-    context.issues = frappe.db.get_list("Issue", filters = {"customer": customer, "raised_by":frappe.session.user}, order_by='creation desc', fields = ["*"])
+    context.issues = frappe.db.get_list("Issue", filters = {"customer": customer}, order_by='creation desc', fields = ["*"])
 
     for key, issue in enumerate(context.issues):
 
         assignments = frappe.db.get_list("ToDo", filters = dict(reference_type = 'Issue', reference_name = issue.name, status = ('!=', 'Cancelled')), fields = ['owner', 'name'])
         
         assignments_list = []
-
         for assign in assignments:
            assignments_list.append(frappe.db.get_value('User', {'email': assign.owner}, ['full_name']))
 

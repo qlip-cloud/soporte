@@ -6,7 +6,7 @@
 
 <div>
      {% block page_content %}
-
+        
         <div class="row">
             <div class="col-sm-12">
                 <h1>Tickets</h1>
@@ -14,36 +14,37 @@
         </div>
 
 
-        <div class="row mt-5">
+        <div class="row">
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-start">
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/?customer={{customer}}">Míos</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/?customer={{customer}}" >Míos</a>
                     <a class="btn btn-primary btn-sm primary-action" href="/tickets/all/?customer={{customer}}">Todos</a>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-center">
                     {% if customers | length > 0 %}
-                        <select id="custom"  autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" onchange="location = '/tickets/?customer=' + this.value;">
-                            
+                        <input type="hidden" value="{{customer}}"/>
+                        <select id="custom" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" onchange="location = '/tickets/all/?customer=' + this.value;">
                             {% for cus in customers%}
-                                <option value="{{cus.tax_id}}" {{ '' if customer != cus.tax_id else "selected"}}>{{cus.customer_name}}</option>
+                                <option value="{{cus.tax_id}}" {{ "" if customer != cus.tax_id else "selected"}}>{{cus.customer_name}}</option>
                             {% endfor %}
+                            
                         </select>
                     {% endif %}
                 </div>
             </div>
-            
             <div class="col-sm-4">
                 <div class="flex col page-actions justify-content-end">
-                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew/?customer={{customer}}">+ New</a>
+                    <a class="btn btn-primary btn-sm primary-action" href="/tickets/createnew/?page=all&customer={{customer}}">+ New</a>
                 </div>
+
             </div>
         </div>
-        <div class="row mt-5">
+        <div class="row">
             <div class="col-sm-12">
         
-                <table class="table" data-toggle="table" data-page-list="[10, 25, 50, 100, 500, All]" data-pagination="true" data-search="true" data-locale="es-ES" {% if issues | length > 0 %} data-filter-control="true" {% endif %}>
+                <table class="table mt-5" data-toggle="table" data-page-list="[10, 25, 50, 100, 500, All]" data-pagination="true" data-search="true" data-locale="es-ES" {% if issues | length > 0 %} data-filter-control="true" {% endif %}>
                     <thead>
                         <tr>
                             <th data-filter-control-placeholder="Buscar" data-field="codigo" data-filter-control="input">Codigo</th>
@@ -59,7 +60,7 @@
                     <tbody>
                     {% for issue in issues %}
                     <tr>
-                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer={{customer}}">{{issue.name}}</a></td>
+                        <td scope="row"><a href="/tickets/detail?code={{issue.name}}&customer={{customer}}&page=all">{{issue.name}}</a></td>
                         <td>{{issue.subject}}</td>
                         <td>{{issue.status}}</td>
                         <td>{{issue.priority}}</td>
@@ -76,12 +77,11 @@
         </div>
     
 
-        
-    
-     {% endblock %}
 
     
+     {% endblock %}
 </div>
+
 
 {% block script %}
     <script src="/assets/support_portal/js/bootstrap-table.min.js"></script>

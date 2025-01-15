@@ -16,7 +16,12 @@
             <div class="flex col page-actions justify-content-end">
                 <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
             </div>    
-                <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets">Atras</a>
+                {% if source_page == 'all' %}
+                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/all/?customer={{customer}}">Atras</a>
+                {% else %}
+                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/?customer={{customer}}">Atras</a>
+                {% endif %}
+                
    
         </div>             
     </div>
@@ -59,9 +64,46 @@
 
     <div id="comment_area">
         {% for comment in comments%}
-        <div style="margin-top: 20px">
-            {{comment.comment_email}} {{comment.creation}}:
-            <p>{{comment.content}}</p>
+        <div class="row" style="margin: 20px;border: rgb(163 163 163) solid 1px;border-radius: 5px;padding:20px;">
+            {% if comment.type == "comment" %}
+                <div class="col-1">
+                    <svg class="icon icon-md" style="">
+                        <use class="" href="#icon-small-message"></use>
+                    </svg> 
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        {{comment.comment_email}}
+                    </div>
+                    <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">{{comment.creation}}
+                    </div>
+                    <div class="row">
+                        {{comment.content}}
+                    </div>
+                </div>
+            {%else%}
+                <div class="col-1">
+                    <svg class="icon icon-md" style="">
+                        {% if comment.sent_or_received == "Received" %}
+                        <use class="" href="#icon-mail"></use>
+                        {%endif%}
+                        {% if comment.sent_or_received == "Sent" %}
+                        <use class="" href="#icon-notification"></use>
+                        {%endif%}
+                    </svg>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        {{comment.reference_owner}}
+                    </div>
+                    <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">
+                        {{comment.creation}}
+                    </div>
+                    <div class="row">
+                        {{comment.content}}
+                    </div>
+                </div>        
+            {%endif%}
         </div>
         {%endfor%}
     </div>
@@ -81,7 +123,11 @@
                 <div class="flex col page-actions justify-content-end">
                     <h3 class="ellipsis title-text" title="Id">{{issue.name}}</h3>        
                 </div>    
-                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets">Atras</a>
+                {% if source_page == 'all' %}
+                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/all/?customer={{customer}}">Atras</a>
+                {% else %}
+                    <a  style="margin-right: 10px;" class="btn btn-default ellipsis" href="/tickets/?customer={{customer}}">Atras</a>
+                {% endif %}
                 <button style="margin-right: 10px;" data-label="Cerrar" class="btn btn-default ellipsis" id="close" data-id="{{issue.name}}">
                     Cerrar ticket
                 </button> 
@@ -105,6 +151,8 @@
                     <td>
                         <div class="control-input-wrapper">                        
                             <div class="control-input floating-label  flex align-center">
+                                <input type="hidden" id="customer" value="{{customer}}">
+                                <input type="hidden" id="source_page" value="{{source_page}}">
                                 <select type="text" autocomplete="off" class="input-with-feedback form-control ellipsis floating-select" maxlength="140" id="producto" data-doctype="Issue" >
                                     {% for product in products%}
                                         <option value="{{product.name}}" {{ '' if issue.producto != product.name else "Selected"}}>{{product.name}}</option>
@@ -206,9 +254,46 @@
     
         <div id="comment_area">
             {% for comment in comments%}
-            <div style="margin-top: 20px">
-                {{comment.comment_email}} {{comment.creation}}:
-                <p>{{comment.content}}</p>
+            <div class="row" style="margin: 20px;border: rgb(163 163 163) solid 1px;border-radius: 5px;padding:20px;">
+                {% if comment.type == "comment" %}
+                    <div class="col-1">
+                        <svg class="icon icon-md" style="">
+                            <use class="" href="#icon-small-message"></use>
+                        </svg> 
+                    </div>
+                    <div class="col-11">
+                        <div class="row">
+                            {{comment.comment_email}}
+                        </div>
+                        <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">{{comment.creation}}
+                        </div>
+                        <div class="row">
+                            {{comment.content}}
+                        </div>
+                    </div>
+                {%else%}
+                    <div class="col-1">
+                        <svg class="icon icon-md" style="">
+                            {% if comment.sent_or_received == "Received" %}
+                            <use class="" href="#icon-mail"></use>
+                            {%endif%}
+                            {% if comment.sent_or_received == "Sent" %}
+                            <use class="" href="#icon-notification"></use>
+                            {%endif%}
+                        </svg>
+                    </div>
+                    <div class="col-11">
+                        <div class="row">
+                            {{comment.reference_owner}}
+                        </div>
+                        <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">
+                            {{comment.creation}}
+                        </div>
+                        <div class="row">
+                            {{comment.content}}
+                        </div>
+                    </div>        
+                {%endif%}
             </div>
             {%endfor%}
         </div>

@@ -17,7 +17,7 @@ function search_items_options_by_customer() {
             }
         });
 
-        $('#blockscreen-modal').modal("hidden")
+        $('#blockscreen-modal').modal("hide")
 
     }
     send_petition_upload("", "", null, callback, url)
