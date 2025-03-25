@@ -1,9 +1,12 @@
 import frappe
 from six import iteritems, string_types
+from frappe.utils import today
 
 @frappe.whitelist()
 @frappe.validate_and_sanitize_search_inputs
 def handler(doctype, txt, searchfield, start, page_len, filters):
+
+    condition = ""
 
     for fieldname, value in iteritems(filters):
         condition += " AND {field}={value}".format(
@@ -24,7 +27,7 @@ def handler(doctype, txt, searchfield, start, page_len, filters):
         LIMIT %(start)s, %(page_len)s
         """.format(**{
         'condition': condition,
-        'today':frappe.datetime.get_today()
+        'today':today()
         }), {
         'start': start,
         'page_len': page_len
