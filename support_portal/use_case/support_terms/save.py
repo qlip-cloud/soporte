@@ -3,8 +3,6 @@ from frappe import _
 
 def update(support_terms, method):
 
-    print("support_terms " + method)
-
     sup_ter = frappe.db.get_list('Issue',
                 filters={'support_terms': support_terms.name},
                 fields=['*']
