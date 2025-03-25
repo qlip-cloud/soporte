@@ -2,8 +2,6 @@ import frappe
 from frappe import _
 
 def after_insert(issue, method):
-    
-    print("issue " + method)
 
     task = frappe.get_doc({
         'doctype': 'Task',
@@ -18,8 +16,6 @@ def after_insert(issue, method):
     return task
 
 def update(issue, method):
-
-    print("issue " + method)
 
     if issue.support_terms:
         sup_ter = frappe.db.get_list('Issue',
