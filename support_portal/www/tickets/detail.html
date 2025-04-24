@@ -73,12 +73,20 @@
                 </div>
                 <div class="col-11">
                     <div class="row">
-                        {{comment.comment_email}}
+                        <div class="col">
+                            {{comment.comment_email}}
+                        </div>
+                        
                     </div>
-                    <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">{{comment.creation}}
+                    <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">
+                        <div class="col">
+                            {{comment.creation}}
+                        </div>
                     </div>
                     <div class="row">
-                        {{comment.content}}
+                        <div class="col" style="word-wrap: break-word;">
+                            {{comment.content}}
+                        </div>
                     </div>
                 </div>
             {%else%}
@@ -94,13 +102,19 @@
                 </div>
                 <div class="col-11">
                     <div class="row">
+                        <div class="col">
                         {{comment.reference_owner}}
+                        </div>
                     </div>
                     <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">
+                        <div class="col">
                         {{comment.creation}}
+                        </div>
                     </div>
                     <div class="row">
+                        <div class="col" style="word-wrap: break-word;">
                         {{comment.content}}
+                        </div>
                     </div>
                 </div>        
             {%endif%}
@@ -273,7 +287,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col" style="word-wrap: break-word;">
                                 {{comment.content}}
                             </div>
                         </div>
@@ -301,7 +315,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col" style="word-wrap: break-word;">
                                 {{comment.content}}
                             </div>
                         </div>
