@@ -73,12 +73,20 @@
                 </div>
                 <div class="col-11">
                     <div class="row">
-                        {{comment.comment_email}}
+                        <div class="col">
+                            {{comment.comment_email}}
+                        </div>
+                        
                     </div>
-                    <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">{{comment.creation}}
+                    <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">
+                        <div class="col">
+                            {{comment.creation}}
+                        </div>
                     </div>
                     <div class="row">
-                        {{comment.content}}
+                        <div class="col" style="word-wrap: break-word;">
+                            {{comment.content}}
+                        </div>
                     </div>
                 </div>
             {%else%}
@@ -94,13 +102,19 @@
                 </div>
                 <div class="col-11">
                     <div class="row">
+                        <div class="col">
                         {{comment.reference_owner}}
+                        </div>
                     </div>
                     <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">
+                        <div class="col">
                         {{comment.creation}}
+                        </div>
                     </div>
                     <div class="row">
+                        <div class="col" style="word-wrap: break-word;">
                         {{comment.content}}
+                        </div>
                     </div>
                 </div>        
             {%endif%}
@@ -244,7 +258,7 @@
                 <span>Comentario</span>
             </div>
             <div class="comment-input-container">
-                <textarea  autocomplete="off" class="input-with-feedback form-control floating-input bold" maxlength="140" data-fieldtype="Data" data-doctype="Issue" id="comment"></textarea>
+                <textarea  autocomplete="off" class="input-with-feedback form-control floating-input bold" maxlength="5000" data-fieldtype="Data" data-doctype="Issue" id="comment"></textarea>
             </div>
             <button style="margin-top: 10px;" class="btn btn-primary btn-comment btn-xs" id = "btn_comment" data-id="{{issue.name}}" data-user="{{user}}">
                 Añadir Comentario
@@ -263,12 +277,19 @@
                     </div>
                     <div class="col-11">
                         <div class="row">
-                            {{comment.comment_email}}
+                            <div class="col">
+                                {{comment.comment_email}}
+                            </div>
                         </div>
-                        <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">{{comment.creation}}
+                        <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">
+                            <div class="col">
+                                {{comment.creation}}
+                            </div>
                         </div>
                         <div class="row">
-                            {{comment.content}}
+                            <div class="col" style="word-wrap: break-word;">
+                                {{comment.content}}
+                            </div>
                         </div>
                     </div>
                 {%else%}
@@ -284,13 +305,19 @@
                     </div>
                     <div class="col-11">
                         <div class="row">
-                            {{comment.reference_owner}}
+                            <div class="col">
+                                {{comment.reference_owner}}
+                            </div>
                         </div>
                         <div class="row" style="color: rgb(204, 204, 204);font-size: .875rem;">
-                            {{comment.creation}}
+                            <div class="col">
+                                {{comment.creation}}
+                            </div>
                         </div>
                         <div class="row">
-                            {{comment.content}}
+                            <div class="col" style="word-wrap: break-word;">
+                                {{comment.content}}
+                            </div>
                         </div>
                     </div>        
                 {%endif%}
