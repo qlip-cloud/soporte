@@ -2,6 +2,7 @@ import json
 import frappe
 from support_portal.services.get_customer_id import handler as get_customer_id
 from babel.dates import format_datetime
+from frappe import _
 
 def get_context(context):
 
@@ -34,6 +35,7 @@ def get_context(context):
         context.issues[key].assign = ', '.join(assignments_list) if assignments_list else ''
         context.issues[key].creation = format_datetime(issue.creation,format='short', locale='es_CO')
         context.issues[key].modified = format_datetime(issue.modified,format='short', locale='es_CO')
+        context.issues[key].status = _(issue.status)
 
     
 
