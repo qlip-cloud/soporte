@@ -71,6 +71,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "fieldname": "fecha_de_finalizacion",
    "fieldtype": "Date",
    "label": "Fecha de Finalizacion",
@@ -110,6 +111,7 @@
    "reqd": 1
   },
   {
+   "allow_on_submit": 1,
    "default": "No",
    "fieldname": "restringir",
    "fieldtype": "Select",
@@ -171,7 +173,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-28 13:11:31.276478",
+ "modified": "2025-08-12 09:01:16.280363",
  "modified_by": "Administrator",
  "module": "Support Portal",
  "name": "Support Terms",
