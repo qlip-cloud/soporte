@@ -7,5 +7,13 @@ frappe.ui.form.on("Issue", {
             };
         });
         frm.refresh_fields()
+    },
+    setup: function(frm, cdt, cdn){
+        frm.set_query("support_terms", function() {
+            return {
+                query:"support_portal.services.support_terms.handler"
+            };
+        });
+        frm.refresh_fields()
     }
 });
