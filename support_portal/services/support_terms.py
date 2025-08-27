@@ -8,10 +8,11 @@ def handler(doctype, txt, searchfield, start, page_len, filters):
 
     condition = ""
 
-    for fieldname, value in iteritems(filters):
-        condition += " AND {field}={value}".format(
-				field=fieldname,
-				value=frappe.db.escape(value))
+    if filters:
+        for fieldname, value in iteritems(filters):
+            condition += " AND {field}={value}".format(
+                    field=fieldname,
+                    value=frappe.db.escape(value))
         
     return frappe.db.sql("""
         SELECT *
@@ -20,7 +21,7 @@ def handler(doctype, txt, searchfield, start, page_len, filters):
             (docstatus = 1
             AND restringir = 'Si'
             AND cantidad_resta > 1   
-            AND fecha_de_finalizacion > {today})
+            AND fecha_de_finalizacion > '{today}')
             OR restringir = 'No' 
         )   
         {condition}                            
