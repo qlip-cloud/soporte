@@ -11,6 +11,11 @@ $(document).ready(function () {
             comment: $("#comment").val(),
             customer: $("#customer").val()
         }
+        description = $("#description").val()
+        if (description.length < 100) {
+            frappe.msgprint(__(`El campo 'Descripción' no cumple con el detalle requerido el cual debe ser aclarado en mínimo (100 caracteres)`))
+            return
+        }
         method = "support_portal.use_case.tickets.save.handler"
         callback = (data) => {
             console.log("data", data)
