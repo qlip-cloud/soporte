@@ -13,7 +13,11 @@ $(document).ready(function () {
         }
         description = $("#description").val()
         if (description.length < 100) {
-            frappe.msgprint(__(`El campo 'Descripción' no cumple con el detalle requerido el cual debe ser aclarado en mínimo (100 caracteres)`))
+            frappe.msgprint({
+                title: 'Error',
+                message: __(`El campo 'Descripción' no cumple con el detalle requerido el cual debe ser aclarado en mínimo (100 caracteres)`),
+                indicator: 'red'
+            })
             return
         }
         method = "support_portal.use_case.tickets.save.handler"
