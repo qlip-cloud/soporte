@@ -11,7 +11,7 @@ $(document).ready(function () {
             comment: $("#comment").val(),
             customer: $("#customer").val()
         }
-        description = $("#description").val()
+        description = $("#description").val().trim()
         if (description.length < 100) {
             frappe.msgprint({
                 title: 'Error',
@@ -45,14 +45,13 @@ function update(id_control) {
 
         var formData = new FormData();
 
-        url = "/api/method/upload_file"
+        url = "/api/method/support_portal.services.upload.upload_file_portal"
 
         formData.append("file", fileToUpload[0], fileToUpload[0].name);
 
         formData.append("is_private", 0);
         formData.append("doctype", "Issue");
         formData.append("docname", id_control);
-        formData.append("fieldname", "image");
 
         callback = (data) => {
 
