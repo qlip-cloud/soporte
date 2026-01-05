@@ -111,13 +111,13 @@ doc_events = {
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
+scheduler_events = {
 # 	"all": [
 # 		"support_portal.tasks.all"
 # 	],
-# 	"daily": [
-# 		"support_portal.tasks.daily"
-# 	],
+ 	"daily": [
+ 		"support_portal.tasks.restrict_support_terms"
+ 	],
 # 	"hourly": [
 # 		"support_portal.tasks.hourly"
 # 	],
@@ -127,7 +127,7 @@ doc_events = {
 # 	"monthly": [
 # 		"support_portal.tasks.monthly"
 # 	]
-# }
+ }
 
 # Testing
 # -------

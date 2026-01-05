@@ -11,6 +11,15 @@ $(document).ready(function () {
             comment: $("#comment").val(),
             customer: $("#customer").val()
         }
+        description = $("#description").val().trim()
+        if (description.length < 100) {
+            frappe.msgprint({
+                title: 'Error',
+                message: __(`El campo 'Descripción' no cumple con el detalle requerido el cual debe ser aclarado en mínimo (100 caracteres)`),
+                indicator: 'red'
+            })
+            return
+        }
         method = "support_portal.use_case.tickets.save.handler"
         callback = (data) => {
             console.log("data", data)
@@ -36,14 +45,13 @@ function update(id_control) {
 
         var formData = new FormData();
 
-        url = "/api/method/upload_file"
+        url = "/api/method/support_portal.services.upload.upload_file_portal"
 
         formData.append("file", fileToUpload[0], fileToUpload[0].name);
 
         formData.append("is_private", 0);
         formData.append("doctype", "Issue");
         formData.append("docname", id_control);
-        formData.append("fieldname", "image");
 
         callback = (data) => {
 

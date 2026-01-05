@@ -23,7 +23,11 @@ def update(issue, method):
                     fields=['*']
                 )
 
+
         support_term = frappe.get_doc('Support Terms', issue.support_terms)
+
+        if support_term.restringir == "Si" or support_term.fecha_de_finalizacion <= frappe.utils.getdate():
+            frappe.throw(_("No se pueden asignar más casos a los términos de soporte seleccionados ya que están restringidos y/o han expirado."))
         
         tah = 0
         tih = 0
