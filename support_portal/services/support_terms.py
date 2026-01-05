@@ -19,10 +19,9 @@ def handler(doctype, txt, searchfield, start, page_len, filters):
         FROM `tabSupport Terms`
         WHERE (
             (docstatus = 1
-            AND restringir = 'Si'
             AND cantidad_resta > 1   
             AND fecha_de_finalizacion > '{today}')
-            OR restringir = 'No' 
+             AND restringir = 'No' 
         )   
         {condition}                            
         LIMIT %(start)s, %(page_len)s

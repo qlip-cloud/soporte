@@ -115,9 +115,9 @@ scheduler_events = {
 # 	"all": [
 # 		"support_portal.tasks.all"
 # 	],
-# 	"daily": [
-# 		"support_portal.tasks.restrict_support_terms"
-# 	],
+ 	"daily": [
+ 		"support_portal.tasks.restrict_support_terms"
+ 	],
 # 	"hourly": [
 # 		"support_portal.tasks.hourly"
 # 	],
