@@ -13,7 +13,8 @@ def handler(doctype, txt, searchfield, start, page_len, filters):
             condition += " AND {field}={value}".format(
                     field=fieldname,
                     value=frappe.db.escape(value))
-        
+
+    #No se incluyen los términos de soporte restringidos o expirados  
     return frappe.db.sql("""
         SELECT *
         FROM `tabSupport Terms`
