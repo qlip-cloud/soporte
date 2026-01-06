@@ -92,9 +92,10 @@ $(document).ready(function () {
       } else {
         frappe.msgprint({
           title: 'Error',
-          message: __('Error al crear el usuario. Por favor, inténtelo de nuevo.'),
+          message: __('Error al crear el usuario: {0}', [response.message || 'Por favor, inténtelo de nuevo.']),
           indicator: 'red'  
         });
+        
       }
     };
     $('#blockscreen-modal').modal("show")
