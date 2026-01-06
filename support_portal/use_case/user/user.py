@@ -34,6 +34,7 @@ def create_user(user_data, customer_name):
         # Verificar si el usuario ya existe
         if frappe.db.exists("User", user_data.get("email")):
             return {"status": "error", "message": f"User with email {user_data.get('email')} already exists"}
+            frappe.throw(f"User with email {user_data.get('email')} already exists")
         
         # Creación de usuario
         new_user = frappe.get_doc({
@@ -44,7 +45,7 @@ def create_user(user_data, customer_name):
             "last_name": user_data.get("last_name"),
             "username": user_data.get("username"),
             "enabled": 1,
-            "send_welcome_email": 0  # Cambiado a 0, enviaremos el email manualmente
+            "send_welcome_email": 1  
         })
         
         # Añadir roles antes del insert
@@ -79,12 +80,6 @@ def create_user(user_data, customer_name):
         # Commit después de crear ambos documentos
         frappe.db.commit()
         
-        # Enviar email de bienvenida manualmente
-        try:
-            new_user.send_welcome_mail_to_user()
-        except Exception as email_error:
-            frappe.log_error(f"Error sending welcome email: {str(email_error)}")
-            # No retornamos error aquí porque el usuario ya fue creado exitosamente
         
         return {
             "status": "success", 
@@ -96,6 +91,5 @@ def create_user(user_data, customer_name):
     except Exception as e:
         frappe.db.rollback()
         frappe.log_error(f"Error in create_user: {str(e)}")
+        frappe.throw(str(e))
         return {"status": "error", "message": str(e)}
-
-    

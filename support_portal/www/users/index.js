@@ -88,18 +88,12 @@ $(document).ready(function () {
           message: __('Usuario creado exitosamente.'),
           indicator: 'green',
         });
-        $('#new-user-email').val('');
-        $('#new-user-first-name').val('');
-        $('#new-user-middle-name').val('');
-        $('#new-user-last-name').val('');
-        $('#new-user-username').val('');
-        $('#new-user-designation').val('');
         window.location.reload();
       } else {
         frappe.msgprint({
           title: 'Error',
           message: __('Error al crear el usuario. Por favor, inténtelo de nuevo.'),
-          indicator: 'red'
+          indicator: 'red'  
         });
       }
     };
