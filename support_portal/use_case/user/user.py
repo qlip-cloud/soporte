@@ -22,11 +22,10 @@ def save_users_settings(settings):
         return {"status": "error", "message": str(e)}
     
 @frappe.whitelist()
-def create_user(user_data, customer_name):
+def create_contact_and_invite(user_data, customer_name):
     """
-    Crear usuario en el sistema con los datos proporcionados.
-    Crear un contacto vinculado al usuario creado y al cliente correspondiente.
-    Enviar correo de bienvenida al nuevo usuario.
+    Crea un contacto vinculado a un cliente y envía una invitación al usuario.
+    El usuario recibe roles específicos y un correo de bienvenida.
     """
     try:
         user_data = json.loads(user_data)
@@ -35,32 +34,17 @@ def create_user(user_data, customer_name):
         if frappe.db.exists("User", user_data.get("email")):
             return {"status": "error", "message": f"User with email {user_data.get('email')} already exists"}
             frappe.throw(f"User with email {user_data.get('email')} already exists")
-        
-        # Creación de usuario
-        new_user = frappe.get_doc({
-            "doctype": "User",
-            "email": user_data.get("email"),
-            "first_name": user_data.get("first_name"),
-            "middle_name": user_data.get("middle_name"),
-            "last_name": user_data.get("last_name"),
-            "username": user_data.get("username"),
-            "enabled": 1,
-            "send_welcome_email": 1  
-        })
-        
-        # Añadir roles antes del insert
-        new_user.append("roles", {"role": "Customer"})
-        new_user.append("roles", {"role": "Cliente Mentum"})
-        
-        new_user.insert(ignore_permissions=True)
-        
+
         # Creación de contacto vinculado al cliente
         contact = frappe.get_doc({
             "doctype": "Contact",
             "first_name": user_data.get("first_name"),
+            "middle_name": user_data.get("middle_name"),
             "last_name": user_data.get("last_name"),
+            "email_id": user_data.get("email"),
             "designation": user_data.get("designation"),
-            "user": new_user.name
+            "sp_pending_user_registration": 1
+            # "user": new_user.name
         })
         
         # Añadir email al contacto
@@ -77,16 +61,54 @@ def create_user(user_data, customer_name):
         
         contact.insert(ignore_permissions=True)
         
-        # Commit después de crear ambos documentos
         frappe.db.commit()
-        
-        
+
+        user_created = False
+
+        try:
+            user = frappe.get_doc({
+                "doctype": "User",
+                "email": user_data.get("email"),
+                "first_name": user_data.get("first_name"),
+                "middle_name": user_data.get("middle_name"),
+                "last_name": user_data.get("last_name"),
+                "enabled": 1,
+                "send_welcome_email": 0 
+            })
+
+            user.append("roles", {"role": "Customer"})
+            user.append("roles", {"role": "Cliente Mentum"})
+
+            user.insert(ignore_permissions=True)
+            user_created = True
+
+        except Exception as e:
+            frappe.log_error(
+                message=str(e),
+                title="B2C invite flow"
+            )
+
+        if user_created:
+            contact.user = user.name
+            contact.sp_pending_user_registration = 0
+            contact.save(ignore_permissions=True)
+            message = (
+                "Contacto y usuario creados correctamente. "
+                "El usuario puede acceder al sistema."
+            )
+        else:
+            message = (
+                "Contacto creado correctamente. "
+                "Se ha enviado una invitación al correo para completar el registro."
+            )
+
         return {
-            "status": "success", 
-            "message": "User and contact created successfully.",
-            "user": new_user.name,
-            "contact": contact.name
+            "status": "success",
+            "message": message,
+            "contact": contact.name,
+            "user_created": user_created
         }
+        
         
     except Exception as e:
         frappe.db.rollback()
