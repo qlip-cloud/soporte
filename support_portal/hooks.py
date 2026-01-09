@@ -105,6 +105,9 @@ doc_events = {
     },
 	"Support Terms": {
 		"on_update": ["support_portal.use_case.support_terms.save.update"],
+    },
+    "User": {
+				"after_insert": ["support_portal.use_case.user.hooks.after_insert"],
     }
 }
 
