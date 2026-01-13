@@ -80,7 +80,7 @@ $(document).ready(function () {
     const customerArray = JSON.parse(customer.replace(/'/g, '"'));
     const customer_name = customerArray[0].name;
 
-    const method = "support_portal.use_case.user.user.create_user";
+    const method = "support_portal.use_case.user.user.create_contact_and_invite";
     const callback = (response) => {
       if (response.status === 'success') {
         frappe.msgprint({

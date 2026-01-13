@@ -1,4 +1,5 @@
 import frappe
+from qlip.apps.support_portal.support_portal.use_case.user import user
 
 def link_user_to_pending_contact(doc, method):
     """
@@ -28,7 +29,9 @@ def link_user_to_pending_contact(doc, method):
                 contact.user = doc.name
                 contact.custom_pending_user_registration = 0
                 contact.save(ignore_permissions=True)
-                
+                doc.append("roles", {"role": "Customer"})
+                doc.append("roles", {"role": "Cliente Mentum"})
+                doc.save(ignore_permissions=True)
                 frappe.logger().info(
                     f"Linked user {doc.name} to contact {contact.name}"
                 )
