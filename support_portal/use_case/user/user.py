@@ -16,7 +16,7 @@ def save_users_settings(settings):
             user_doc.enabled = enabled
             user_doc.save(ignore_permissions=True)
         frappe.db.commit()
-        return {"status": "success", "message": "User settings saved successfully."}
+        return {"status": "success", "message": "Configuraciones guardadas correctamente."}
     except Exception as e:
         frappe.db.rollback()
         return {"status": "error", "message": str(e)}
@@ -32,8 +32,7 @@ def create_contact_and_invite(user_data, customer_name):
         
         # Verificar si el usuario ya existe
         if frappe.db.exists("User", user_data.get("email")):
-            return {"status": "error", "message": f"User with email {user_data.get('email')} already exists"}
-            frappe.throw(f"User with email {user_data.get('email')} already exists")
+            return {"status": "error", "message": f"Usuario con el correo {user_data.get('email')} ya existe en el sistema."}
 
         # Creación de contacto vinculado al cliente
         contact = frappe.get_doc({
@@ -112,6 +111,6 @@ def create_contact_and_invite(user_data, customer_name):
         
     except Exception as e:
         frappe.db.rollback()
-        frappe.log_error(f"Error in create_user: {str(e)}")
+        frappe.log_error(f"Error al crear el contacto y usuario: {str(e)}")
         frappe.throw(str(e))
         return {"status": "error", "message": str(e)}
