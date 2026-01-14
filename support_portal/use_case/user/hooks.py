@@ -28,7 +28,9 @@ def link_user_to_pending_contact(doc, method):
                 contact.user = doc.name
                 contact.custom_pending_user_registration = 0
                 contact.save(ignore_permissions=True)
-                
+                doc.append("roles", {"role": "Customer"})
+                doc.append("roles", {"role": "Cliente Mentum"})
+                doc.save(ignore_permissions=True)
                 frappe.logger().info(
                     f"Linked user {doc.name} to contact {contact.name}"
                 )
@@ -36,6 +38,6 @@ def link_user_to_pending_contact(doc, method):
                 
     except Exception as e:
         frappe.log_error(
-            message=f"Error linking user {doc.email} to contact: {str(e)}",
-            title="User-Contact Linking Error"
+            message=f"Error enlazando usuario {doc.email} al contacto: {str(e)}",
+            title="Error de enlace Usuario-Contacto"
         )

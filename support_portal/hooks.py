@@ -107,7 +107,7 @@ doc_events = {
 		"on_update": ["support_portal.use_case.support_terms.save.update"],
     },
     "User": {
-				"after_insert": ["support_portal.use_case.user.hooks.after_insert"],
+				"after_insert": ["support_portal.use_case.user.hooks.link_user_to_pending_contact"],
     }
 }
 
