@@ -1,5 +1,4 @@
 import frappe
-from qlip.apps.support_portal.support_portal.use_case.user import user
 
 def link_user_to_pending_contact(doc, method):
     """
