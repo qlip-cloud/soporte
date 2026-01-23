@@ -18,12 +18,10 @@ def handler(doctype, txt, searchfield, start, page_len, filters):
     return frappe.db.sql("""
         SELECT *
         FROM `tabSupport Terms`
-        WHERE (
-            (docstatus = 1
-            AND cantidad_resta > 1   
-            AND fecha_de_finalizacion > '{today}')
-             AND restringir = 'No' 
-        )   
+        WHERE 
+        docstatus = 1
+        AND fecha_de_finalizacion > '{today}'
+        AND restringir = 'No'    
         {condition}                            
         LIMIT %(start)s, %(page_len)s
         """.format(**{
