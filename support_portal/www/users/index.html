@@ -1,0 +1,89 @@
+{% extends "frappe/templates/web.html" %}
+{% block title %}{{ ("Usuarios") }}{% endblock %}
+{% block head_include %}
+    <link rel="stylesheet" href="/assets/support_portal/css/bootstrap-table.min.css">
+    <title>Usuarios</title>
+{% endblock %}
+
+<div>
+     {% block page_content %}
+
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Usuarios</h1>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+              <div class="col-sm-12">
+        
+                <table class="table" data-toggle="table" data-page-list="[10, 25, 50, 100, 500, All]" data-pagination="true" data-search="true" data-locale="es-ES" {% if issues | length > 0 %} data-filter-control="true" {% endif %}>
+                    <thead>
+                        <tr>
+                            <th data-filter-control-placeholder="Buscar" data-field="user" data-filter-control="input">Usuario</th>
+                            <th data-filter-control-placeholder="Buscar" data-field="enabled" data-filter-control="input">Habilitado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{user.email}}</td>
+                        <td>
+                          <input type="checkbox" name="enabled" id="{{user.name}}" data-id="{{user.name}}" {% if user.enabled %} checked {% endif %}>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                
+                <div class="mt-3" id="save-button-container" style="display: none;">
+                    <a class="btn btn-primary btn-sm primary-action" id="save-settings">Guardar</a>
+                </div>
+        
+            </div>
+        </div>
+    
+        <div class="row mt-5">
+            <div class="col-sm-12">
+                <h2>Creación de Usuario</h2>
+            </div>
+            <div class="col-sm-4 mt-3">
+                <label for="new-user-email">Correo Electrónico*</label>
+                <input type="email" class="form-control" id="new-user-email" placeholder="Ingrese el correo electrónico">
+            </div>
+            <div class="col-sm-4 mt-3">
+                <label for="first-name">Primer Nombre*</label>
+                <input type="text" class="form-control" id="new-user-first-name" placeholder="Ingrese el primer nombre">
+            </div>
+            <div class="col-sm-4 mt-3">
+                <label for="middle-name">Segundo Nombre</label>
+                <input type="text" class="form-control" id="new-user-middle-name" placeholder="Ingrese el segundo nombre">
+            </div>
+            <div class="col-sm-4 mt-3">
+                <label for="last-name">Apellido*</label>
+                <input type="text" class="form-control" id="new-user-last-name" placeholder="Ingrese el apellido">
+            </div>
+            <div class="col-sm-4 mt-3">
+                <label for="designation">Puesto*</label>
+                <input type="text" class="form-control" id="new-user-designation" placeholder="Ingrese el puesto">
+            </div>
+            <div class="col-sm-4 mt-3">
+                <label for="username">Nombre de Usuario</label>
+                <input type="text" class="form-control" id="new-user-username" placeholder="Ingrese el nombre de usuario">
+            </div>
+            <div class="col-sm-4 mt-3 d-flex align-items-center">
+                <a id="create-new-user" class="btn btn-primary">Crear Usuario</a>
+                <input type="hidden" name="customer" id="customer" value="{{ customer }}">
+            </div>
+        </div>
+        
+    
+     {% endblock %}
+
+    
+</div>
+{% block alphas_js %}
+    <script src="/assets/support_portal/js/bootstrap-table.min.js"></script>
+    <script src="/assets/support_portal/js/bootstrap-table-filter-control.min.js"></script>
+    <script src="/assets/support_portal/js/bootstrap-table-es-ES.js"></script>
+{% endblock %}

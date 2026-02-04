@@ -105,6 +105,9 @@ doc_events = {
     },
 	"Support Terms": {
 		"on_update": ["support_portal.use_case.support_terms.save.update"],
+    },
+    "User": {
+				"after_insert": ["support_portal.use_case.user.hooks.link_user_to_pending_contact"],
     }
 }
 
@@ -115,9 +118,9 @@ scheduler_events = {
 # 	"all": [
 # 		"support_portal.tasks.all"
 # 	],
-# 	"daily": [
-# 		"support_portal.tasks.restrict_support_terms"
-# 	],
+ 	"daily": [
+ 		"support_portal.tasks.restrict_support_terms"
+ 	],
 # 	"hourly": [
 # 		"support_portal.tasks.hourly"
 # 	],

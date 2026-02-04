@@ -13,17 +13,15 @@ def handler(doctype, txt, searchfield, start, page_len, filters):
             condition += " AND {field}={value}".format(
                     field=fieldname,
                     value=frappe.db.escape(value))
-        
+
+    #No se incluyen los términos de soporte restringidos o expirados  
     return frappe.db.sql("""
         SELECT *
         FROM `tabSupport Terms`
-        WHERE (
-            (docstatus = 1
-            AND restringir = 'Si'
-            AND cantidad_resta > 1   
-            AND fecha_de_finalizacion > '{today}')
-            OR restringir = 'No' 
-        )   
+        WHERE 
+        docstatus = 1
+        AND fecha_de_finalizacion > '{today}'
+        AND restringir = 'No'    
         {condition}                            
         LIMIT %(start)s, %(page_len)s
         """.format(**{
