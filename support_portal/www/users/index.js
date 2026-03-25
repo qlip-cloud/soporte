@@ -63,8 +63,7 @@ $(document).ready(function () {
       first_name: $('#new-user-first-name').val(),
       middle_name: $('#new-user-middle-name').val(),
       last_name: $('#new-user-last-name').val(),
-      designation: $('#new-user-designation').val(),
-      username: $('#new-user-username').val()
+      designation: $('#new-user-designation').val()
     };
 
     if (!newUser.email || !newUser.first_name || !newUser.last_name || !newUser.designation) {
